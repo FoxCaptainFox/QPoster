@@ -41,6 +41,5 @@ To run app on android with live reload:<br />
 <br />
 <br />
 <br />
-<br />
 
-[Oficial documentation](https://ionicframework.com/docs/)
+[Official documentation](https://ionicframework.com/docs/)
