@@ -12,7 +12,7 @@ Requirements:
 
 All requirements are described [by reference](https://beta.ionicframework.com/docs/installation/android)
 
-## To start project
+## To run the project
 
 Clone project
 
