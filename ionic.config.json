@@ -1,5 +1,7 @@
 {
   "name": "QPoster",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular"
 }
