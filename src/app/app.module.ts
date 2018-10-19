@@ -5,12 +5,14 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
+import { QRScanner } from '@ionic-native/qr-scanner';
+import { AndroidFullScreen } from '@ionic-native/android-full-screen';
+import { QRCodeScanPage } from '../pages/qrCodeScan/qrCodeScan';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    QRCodeScanPage
   ],
   imports: [
     BrowserModule,
@@ -19,11 +21,13 @@ import { HomePage } from '../pages/home/home';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    QRCodeScanPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    QRScanner,
+    AndroidFullScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
