@@ -1,34 +1,16 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { ErrorHandler, NgModule } from '@angular/core';
-import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
-import { SplashScreen } from '@ionic-native/splash-screen';
-import { StatusBar } from '@ionic-native/status-bar';
+import { NgModule } from '@angular/core';
 
-import { MyApp } from './app.component';
-import { QRScanner } from '@ionic-native/qr-scanner';
-import { AndroidFullScreen } from '@ionic-native/android-full-screen';
-import { QRCodeScanPage } from '../pages/qrCodeScan/qrCodeScan';
+import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [
-    MyApp,
-    QRCodeScanPage
+    AppComponent
   ],
   imports: [
-    BrowserModule,
-    IonicModule.forRoot(MyApp)
+    BrowserModule
   ],
-  bootstrap: [IonicApp],
-  entryComponents: [
-    MyApp,
-    QRCodeScanPage
-  ],
-  providers: [
-    StatusBar,
-    SplashScreen,
-    QRScanner,
-    AndroidFullScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
-  ]
+  providers: [],
+  bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
