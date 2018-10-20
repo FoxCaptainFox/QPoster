@@ -1,0 +1,27 @@
+.product-item {
+    display: flex;
+    margin-bottom: 20px;
+    height: 100px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    background-color: rgba(245,245,245,1);
+}
+
+.product-item .product-name {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image {
+    height: 100%;
+}
+
+.container {
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    overflow: hidden;
+}
