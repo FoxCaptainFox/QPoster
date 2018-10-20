@@ -1,0 +1,8 @@
+<div class="start-page">
+  <ng-container *ngIf="isWrongUlr; else wrongUrl">
+
+  </ng-container>
+  <ng-container #wrongUrl>
+    <app-wrong-url></app-wrong-url>
+  </ng-container>
+</div>
