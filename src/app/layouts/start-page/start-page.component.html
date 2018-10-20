@@ -1,8 +1,12 @@
-<div class="start-page">
-  <ng-container *ngIf="isWrongUlr; else wrongUrl">
-
-  </ng-container>
-  <ng-container #wrongUrl>
+<div class="start-page-wrapper">
+  <ng-template *ngIf="!isWrongUrl; else wrongUrlTemplate">
+    <div class="start-page">
+      <ng-template *ngIf="isLoad">
+        <div class="load-page"></div>
+      </ng-template>
+    </div>
+  </ng-template>
+  <ng-template #wrongUrlTemplate>
     <app-wrong-url></app-wrong-url>
-  </ng-container>
+  </ng-template>
 </div>

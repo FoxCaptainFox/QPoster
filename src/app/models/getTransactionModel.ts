@@ -1,8 +1,9 @@
-export interface GetTansactionModel {
+export interface IGetTansactionModel {
+  accountname: string;
   token: string;
   spot_id: Number;
-  spot_table_id: Number;
+  spot_tablet_id: Number;
   table_id: Number;
   user_id: Number;
-  guest_count: Number;
+  guests_count: Number;
 }

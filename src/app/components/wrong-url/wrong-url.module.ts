@@ -18,4 +18,4 @@ import { WrongUrlComponent } from './wrong-url.component';
     TransactionService
   ]
 })
-export class StartPageModule { }
+export class WrongUrlModel { }

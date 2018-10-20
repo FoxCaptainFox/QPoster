@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { IGetTansactionModel } from 'src/app/models/getTransactionModel';
 
 @Injectable({
   providedIn: 'root',
@@ -7,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 export class TransactionService {
   constructor(private http: HttpClient) { }
 
-  createTransaction() {
-    // this.http.post('https://dev.joinposter.com/docs/api#transactions-createtransaction');
+  createTransaction(data: IGetTansactionModel) {
+    return this.http.post(``, data);
   }
 }
