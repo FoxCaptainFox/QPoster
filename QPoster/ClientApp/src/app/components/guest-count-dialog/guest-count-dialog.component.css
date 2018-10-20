@@ -1,0 +1,27 @@
+.mat-dialog-actions {
+  justify-content: center;
+}
+
+.mat-dialog-title {
+  text-align: center;
+  word-wrap: none;
+}
+
+.mat-dialog-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mat-form-field {
+  width: 100px;
+}
+
+.mat-dialog-content .mat-input-element {
+  text-align: center;
+}
+
+.mat-dialog-actions .mat-button {
+  width: 100%;
+  border: 1px solid rgba(150,150,150,1);
+}
