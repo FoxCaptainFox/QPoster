@@ -10,6 +10,9 @@ namespace QPoster.Database.Models
         public int Id { get; set; }
 
         [Required]
+        public int TransactionId { get; set; }
+
+        [Required]
         public int SpotId { get; set; }
 
         [Required]

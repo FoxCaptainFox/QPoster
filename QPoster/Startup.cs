@@ -7,6 +7,8 @@ using Microsoft.Extensions.DependencyInjection;
 using QPoster.Database;
 using QPoster.Database.Context;
 using QPoster.Database.Models;
+using QPoster.Services;
+using QPoster.Services.Interfaces;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace QPoster
@@ -27,6 +29,7 @@ namespace QPoster
 
             services.AddTransient<IRepository<Transaction>, Repository<Transaction>>();
             services.AddTransient<IRepository<TransactionProducts>, Repository<TransactionProducts>>();
+            services.AddTransient<ITransactionService, TransactionService>();
 
             services.AddSwaggerGen(c =>
             {
