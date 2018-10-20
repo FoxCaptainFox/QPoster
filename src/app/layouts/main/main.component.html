@@ -1,14 +1,16 @@
 <div class="app-main">
-  <div class="header">Header</div>
+  <div class="header">{{(companyName | async)?.value}}</div>
   <mat-tab-group headerPosition="below">
-    <mat-tab label="First">
+    <mat-tab label="Check">
         <div class="content">asd asd sd</div>
     </mat-tab>
-    <mat-tab label="Second">
+    <mat-tab label="Menu">
         <div class="content">asd asd asd </div>
     </mat-tab>
-    <mat-tab label="Third">
-        <div class="content">asd asd asd</div>
+    <mat-tab label="About">
+        <div class="about">
+          <app-about></app-about>
+        </div>
     </mat-tab>
   </mat-tab-group>
 </div>
