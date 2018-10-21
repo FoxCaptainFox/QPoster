@@ -8,7 +8,10 @@ namespace QPoster.Database.Models
         [Key]
         public int Id { get; set; }
 
-        [Required]
+		[Required]
+		public string Name { get; set; }
+
+		[Required]
         public int ProductId { get; set; }
 
         [Required]
@@ -25,7 +28,7 @@ namespace QPoster.Database.Models
 
         #region Navigation props
 
-        public virtual Transaction Transaction { get; set; }
+        //public virtual Transaction Transaction { get; set; }
 
         #endregion
     }

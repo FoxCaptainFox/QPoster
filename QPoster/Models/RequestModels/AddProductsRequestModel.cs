@@ -9,6 +9,9 @@ namespace QPoster.Models.RequestModels
 	public class AddProductsRequestModel
 	{
 		[Required]
+		public string name { get; set; }
+
+		[Required]
 		public int transactionId { get; set; }
 
 		[Required]

@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Cors;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using QPoster.Database;
 using QPoster.Database.Models;
@@ -67,25 +66,28 @@ namespace QPoster.Controllers.API
 				return Content(500, ex);
 			}
 		}
-	}
 
-	[HttpGet("CallWaiter")]
-        public async Task<IActionResult> CallWaiter(int terminalId, int tableId)
+        [HttpGet("CallWaiter")]
+        public async Task<IActionResult> CallWaiter(int transactionId)
         {
             try
             {
+                var transaction = _transactionsRepository.First(i => i.TransactionId == transactionId);
+
+                var terminalId = transaction.SpotTabletId;
+
+                var tableId = transaction.TableId;
+
+                var accountName = transaction.AccountName;
+
                 var socketKey = _connectionManager.Connections.Keys.Where(i => i.TerminalId == terminalId).FirstOrDefault();
                 var socket = _connectionManager.Connections[socketKey];
 
-                var notificationMessage = new
-                {
-                    terminalId,
-                    tableId
-                };
+                var notificationMessage = new { tableId };
                 var json = JsonConvert.SerializeObject(notificationMessage);
 
                 if (socket != null)
-                    await _webSocketHandler.SendMessageAsync(json, socket);
+                    await _webSocketHandler.SendMessageAsync(json, socket, terminalId, accountName);
                 else
                     throw new Exception();
 

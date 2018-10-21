@@ -33,8 +33,6 @@ namespace QPoster.Services
 			
 			var transaction = _transactionRepository.Find(t => t.TransactionId == products.First().transactionId).First();
 
-			var a = transaction.TransactionProducts.Count;
-
 			var url = "https://" + transaction.AccountName + ".joinposter.com/api/transactions.addTransactionProduct?token=" + transaction.Token;
 			
 			foreach (var product in products)
@@ -44,7 +42,8 @@ namespace QPoster.Services
 					Count = product.count,
 					Price = product.price,
 					ProductId = product.productId,
-					TransactionId = product.transactionId
+					TransactionId = product.transactionId,
+					Name = product.name
 				};
 				PosterAddTransactionProductReqestModel posterModel = new PosterAddTransactionProductReqestModel()
 				{
