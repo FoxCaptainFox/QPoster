@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Cors;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using QPoster.Database;
 using QPoster.Database.Models;
@@ -67,13 +66,14 @@ namespace QPoster.Controllers.API
 				return Content(500, ex);
 			}
 		}
-	}
 
-	[HttpGet("CallWaiter")]
-        public async Task<IActionResult> CallWaiter(int terminalId, int tableId)
+        [HttpGet("CallWaiter")]
+        public async Task<IActionResult> CallWaiter(int terminalId, int transactionId)
         {
             try
             {
+                var tableId = _transactionsRepository.First(i => i.TransactionId == transactionId).TableId;
+
                 var socketKey = _connectionManager.Connections.Keys.Where(i => i.TerminalId == terminalId).FirstOrDefault();
                 var socket = _connectionManager.Connections[socketKey];
 
