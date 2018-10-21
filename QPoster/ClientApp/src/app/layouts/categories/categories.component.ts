@@ -21,8 +21,9 @@ export class CategoriesComponent implements OnInit {
 
   categories: Observable<ICategory[]>;
   products: Observable<IProduct[]>;
-  productsToBuy : IProduct[] = [];
-
+  productsToBuy: IProduct[] = [];
+  parentCategory = null;
+  category_id;
 
   constructor(private menuService: MenuService,
     private categoriesService: CategoriesService,
@@ -75,15 +76,15 @@ export class CategoriesComponent implements OnInit {
         const temp = result.response as IProduct[];
         temp.forEach(element => {
           this.productsToBuy.forEach(product => {
-            if(element.product_name == product.product_name){
+            if (element.product_name === product.product_name) {
               element.count = product.count;
             }
           });
-          if (!element.count){
+          if (!element.count) {
             element.count = 0;
           }
         });
-        return temp
+        return temp;
       })
     );
 
@@ -100,16 +101,16 @@ export class CategoriesComponent implements OnInit {
     this.categories.subscribe();
   }
 
-  addToCheck(product:IProduct) {
-    if(product.count == 1){
+  addToCheck(product: IProduct) {
+    if (product.count === 1) {
       this.productsToBuy.push(product);
       console.log(this.productsToBuy);
     }
   }
 
-  deleteFromCheck(product:IProduct) {
-    if(product.count == 0){
-      this.productsToBuy = this.productsToBuy.filter(x => x.product_name != product.product_name);
+  deleteFromCheck(product: IProduct) {
+    if (product.count === 0) {
+      this.productsToBuy = this.productsToBuy.filter(x => x.product_name !== product.product_name);
       console.log(this.productsToBuy);
     }
   }

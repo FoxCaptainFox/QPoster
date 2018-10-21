@@ -22,6 +22,7 @@ import { CategoriesService } from './services/local/categories.service';
 import { CheckComponent } from './layouts/check/check.component';
 import { EndDialogComponent } from './components/end-dialog/end-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { NotificationService } from './services/http/notificationService';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MenuService,
     CookieService,
     CategoriesService,
+    NotificationService
   ],
   bootstrap: [AppComponent],
   entryComponents: [

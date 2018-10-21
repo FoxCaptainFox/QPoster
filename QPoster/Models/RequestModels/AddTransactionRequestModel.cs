@@ -2,7 +2,7 @@
 
 namespace QPoster.Models.RequestModels
 {
-    public class CreateTransactionRequestModel
+    public class AddTransactionRequestModel
     {
         [Required]
         public string accountname { get; set; }

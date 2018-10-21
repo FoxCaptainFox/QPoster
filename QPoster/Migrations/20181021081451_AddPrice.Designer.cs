@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using QPoster.Database.Context;
 
 namespace QPoster.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20181021081451_AddPrice")]
+    partial class AddPrice
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,8 +32,6 @@ namespace QPoster.Migrations
                     b.Property<int>("SpotId");
 
                     b.Property<int>("SpotTabletId");
-
-                    b.Property<int>("TableId");
 
                     b.Property<string>("Token")
                         .IsRequired();
@@ -53,9 +53,6 @@ namespace QPoster.Migrations
 
                     b.Property<int>("Count");
 
-                    b.Property<string>("Name")
-                        .IsRequired();
-
                     b.Property<int>("Price");
 
                     b.Property<int>("ProductId");
@@ -66,7 +63,17 @@ namespace QPoster.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("TransactionId");
+
                     b.ToTable("TransactionProducts");
+                });
+
+            modelBuilder.Entity("QPoster.Database.Models.TransactionProducts", b =>
+                {
+                    b.HasOne("QPoster.Database.Models.Transaction", "Transaction")
+                        .WithMany("TransactionProducts")
+                        .HasForeignKey("TransactionId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { CategoriesService } from 'src/app/services/local/categories.service';
 import { TransactionService } from '../../services/http/transaction.service';
+import { NotificationService } from 'src/app/services/http/notificationService';
 
 @Component({
   selector: 'app-main',
@@ -22,7 +23,8 @@ export class MainComponent implements OnInit {
 
   constructor(private aboutService: AboutService,
     private categotiesService: CategoriesService,
-    private transactionService: TransactionService) { }
+    private transactionService: TransactionService,
+    private notificationService: NotificationService) { }
 
   ngOnInit() {
     this.companyName = this.aboutService.getCompanyName().pipe(
@@ -59,4 +61,8 @@ export class MainComponent implements OnInit {
       }
     }
   }
+  notify() {
+    this.notificationService.notify().subscribe();
+  }
 }
+
