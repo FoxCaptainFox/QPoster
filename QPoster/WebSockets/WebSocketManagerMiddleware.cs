@@ -38,8 +38,7 @@ namespace QPoster.WebSockets
             bool connectionResult = await _webSocketHandler.Connect(new ConnectionKey
             {
                 TerminalId = int.Parse(socketSubProtocol[0]),
-                TableId = int.Parse(socketSubProtocol[1]),
-                AccountName = socketSubProtocol[2]
+                AccountName = socketSubProtocol[1]
             }, socket);
 
             if (!connectionResult)

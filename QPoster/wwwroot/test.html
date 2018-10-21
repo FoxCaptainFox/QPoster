@@ -8,7 +8,7 @@
     <h1>test page</h1>
 
     <script>
-        var str = "1|2|cafename";
+        var str = "1|cafename";
         var url = "wss://" + window.location.host + "/ws";
 
         var socket = new WebSocket(url, str);
@@ -23,7 +23,9 @@
                 alert("close");
             };
             socket.onmessage = function (event) {
-                alert("message")
+                var message = JSON.parse(event.data);
+
+                alert(message);
             };
             socket.onerror = function (event) {
                 alert("error: " + event.data);

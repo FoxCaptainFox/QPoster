@@ -48,15 +48,15 @@ namespace QPoster.Controllers.API
         }
 
         [HttpGet("CallWaiter")]
-        public async Task<IActionResult> CallWaiter(int tableId)
+        public async Task<IActionResult> CallWaiter(int terminalId)
         {
             try
             {
-                var socketKey = _connectionManager.Connections.Keys.Where(i => i.TableId == tableId).FirstOrDefault();
+                var socketKey = _connectionManager.Connections.Keys.Where(i => i.TerminalId == terminalId).FirstOrDefault();
                 var socket = _connectionManager.Connections[socketKey];
 
                 if (socket != null)
-                    await _webSocketHandler.SendMessageAsync(tableId.ToString(), socket);
+                    await _webSocketHandler.SendMessageAsync(terminalId.ToString(), socket);
                 else
                     throw new Exception();
 
