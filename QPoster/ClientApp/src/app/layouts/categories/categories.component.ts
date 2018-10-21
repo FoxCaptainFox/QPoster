@@ -19,6 +19,7 @@ export class CategoriesComponent implements OnInit {
   isBtnVisible = false;
   categories: Observable<ICategory[]>;
   products: Observable<IProduct[]>;
+  productsToBuy : IProduct[] = [];
   parentCategory = null;
   category_id;
 
@@ -48,7 +49,18 @@ export class CategoriesComponent implements OnInit {
   getProducts(category_id) {
     this.products = this.menuService.getProducts(category_id).pipe(
       map((result: any) => {
-        return result.response as IProduct[];
+        const temp = result.response as IProduct[];
+        temp.forEach(element => {
+          this.productsToBuy.forEach(product => {
+            if(element.product_name == product.product_name){
+              element.count = product.count;
+            }
+          });
+          if (!element.count){
+            element.count = 0;
+          }
+        });
+        return temp
       })
     );
 
@@ -63,5 +75,19 @@ export class CategoriesComponent implements OnInit {
     );
 
     this.categories.subscribe();
+  }
+
+  addToCheck(product:IProduct) {
+    if(product.count == 1){
+      this.productsToBuy.push(product);
+      console.log(this.productsToBuy);
+    }
+  }
+
+  deleteFromCheck(product:IProduct) {
+    if(product.count == 0){
+      this.productsToBuy = this.productsToBuy.filter(x => x.product_name != product.product_name);
+      console.log(this.productsToBuy);
+    }
   }
 }

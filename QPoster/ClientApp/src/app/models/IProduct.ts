@@ -5,4 +5,5 @@ export interface IProduct {
     price: IPrice;
     product_name: string;
     product_production_description: string;
+    count: number;
 }
