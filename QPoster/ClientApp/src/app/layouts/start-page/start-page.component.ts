@@ -4,6 +4,7 @@ import { TransactionService } from 'src/app/services/http/transaction.service';
 import { MatDialog } from '@angular/material/dialog';
 import { GuestCountDialogComponent } from 'src/app/components/guest-count-dialog/guest-count-dialog.component';
 import { IGetTansactionModel } from 'src/app/models/getTransactionModel';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-start-page',
@@ -18,7 +19,9 @@ export class StartPageComponent implements AfterViewInit {
 
   constructor(private router: ActivatedRoute,
     private transactionService: TransactionService,
-    public dialog: MatDialog) {}
+    public dialog: MatDialog,
+    private cookie: CookieService ) {
+  }
 
   ngAfterViewInit() {
 
@@ -56,8 +59,11 @@ export class StartPageComponent implements AfterViewInit {
 
     dialogRef.afterClosed().subscribe(result => {
       this.routeData.guests_count = result;
-      this.transactionService.createTransaction(this.routeData).subscribe(response => {
-        console.log(response);
+      this.transactionService.createTransaction(this.routeData).subscribe((data: any) => {
+        data = JSON.parse(data);
+        this.cookie.set('account', this.routeData.accountname);
+        this.cookie.set('token', this.routeData.token);
+        this.cookie.set('transaction', JSON.stringify(data.response));
       });
     });
   }

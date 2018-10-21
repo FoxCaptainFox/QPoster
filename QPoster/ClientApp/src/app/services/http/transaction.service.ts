@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { IGetTansactionModel } from 'src/app/models/getTransactionModel';
 
 @Injectable({
@@ -9,6 +9,6 @@ export class TransactionService {
   constructor(private http: HttpClient) { }
 
   createTransaction(data: IGetTansactionModel) {
-    return this.http.post(``, data);
+    return this.http.post(`http://192.168.5.141:58349/api/Transaction/AddTransaction`, data);
   }
 }
