@@ -1,29 +1,30 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AboutService {
+export class MenuService {
 
   constructor(
     private http: HttpClient,
-    private cookie: CookieService) { }
+    private cookie: CookieService
+  ) { }
 
-  getCompanyName() {
+  getCategories() {
 
     const companyName: string = this.cookie.get('account');
     const token: string = this.cookie.get('token');
 
-    return this.http.get(`https://${companyName}.joinposter.com/api/settings.getCompanyName?token=${token}`);
+    return this.http.get(`https://${companyName}.joinposter.com/api/menu.getCategories?token=${token}`);
   }
 
-  getCompanyLogo() {
+  getProducts(categoryId) {
 
     const companyName: string = this.cookie.get('account');
     const token: string = this.cookie.get('token');
 
-    return this.http.get(`https://${companyName}.joinposter.com/api/settings.getAllSettings?token=${token}`);
+    return this.http.get(`https://${companyName}.joinposter.com/api/menu.getProducts?token=${token}&category_id=${categoryId}`);
   }
 }

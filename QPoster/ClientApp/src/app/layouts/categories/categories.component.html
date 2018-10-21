@@ -1,0 +1,24 @@
+<mat-accordion>
+    <mat-expansion-panel *ngIf="(categories | async)?.length" [expanded]="true">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Categories
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <ng-container *ngFor="let category of (categories | async)">
+            <div (click)="getProductsInCategory(category.category_id)">
+                <app-category [category]="category"></app-category>
+            </div>
+        </ng-container>
+    </mat-expansion-panel>
+    <mat-expansion-panel *ngIf="(products | async)?.length" [expanded]="true">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Products
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <ng-container *ngFor="let product of (products | async)">
+            <app-product [product]="product" (onAdded)="addToCheck($event)" (onDeleted)="deleteFromCheck($event)"></app-product>
+        </ng-container>
+    </mat-expansion-panel>
+</mat-accordion>

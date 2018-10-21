@@ -1,3 +1,4 @@
 <div class="app-root">
-  <app-start-page></app-start-page>
+  <app-main *ngIf="authorized"></app-main>
+  <app-start-page *ngIf="!authorized"></app-start-page>
 </div>

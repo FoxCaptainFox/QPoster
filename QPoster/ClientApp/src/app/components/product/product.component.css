@@ -1,0 +1,40 @@
+.product-item {
+    display: flex;
+    margin-bottom: 20px;
+    height: 100px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    background-color: rgba(245,245,245,1);
+}
+
+.product-item .product-name {
+    text-align: center;
+}
+
+.product-items {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.product-count {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+}
+
+.image {
+    height: 100%;
+}
+
+.container {
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    overflow: hidden;
+}

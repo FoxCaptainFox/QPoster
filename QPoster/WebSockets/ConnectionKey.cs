@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace QPoster.WebSockets
+﻿namespace QPoster.WebSockets
 {
     public class ConnectionKey
     {
+        public int TerminalId { get; set; }
 
+        public string AccountName { get; set; }
     }
 }

@@ -1,0 +1,18 @@
+<div class="product-item">
+  <div class="container">
+    <img class="image" [src]="transformImage(product.photo)" />
+  </div>
+  <div class="product-items">
+    <div class="product-name">{{product.product_name}}</div>
+    <div class="product-name">Price: {{product.price[1]/100}} грн</div>
+  </div>
+  <div class="product-count">
+    <button mat-icon-button (click)="increaseDecreaseCount(true)">
+      <i class="fas fa-angle-up"></i>
+    </button>
+    <span>{{product.count}}</span>
+    <button mat-icon-button (click)="increaseDecreaseCount(false)">
+      <i class="fas fa-angle-down"></i>
+    </button>
+  </div>
+</div>

@@ -1,9 +1,10 @@
 import { Component, AfterViewInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TransactionService } from 'src/app/services/http/transaction.service';
 import { MatDialog } from '@angular/material/dialog';
 import { GuestCountDialogComponent } from 'src/app/components/guest-count-dialog/guest-count-dialog.component';
 import { IGetTansactionModel } from 'src/app/models/getTransactionModel';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-start-page',
@@ -16,13 +17,16 @@ export class StartPageComponent implements AfterViewInit {
   isLoading = false;
   routeData: IGetTansactionModel;
 
-  constructor(private router: ActivatedRoute,
+  constructor(private route: ActivatedRoute,
+    private router: Router,
     private transactionService: TransactionService,
-    public dialog: MatDialog) {}
+    public dialog: MatDialog,
+    private cookie: CookieService ) {
+  }
 
   ngAfterViewInit() {
 
-    this.router.queryParams.subscribe(params => {
+    this.route.queryParams.subscribe(params => {
 
       const accountname = params['accountname'];
       const token = params['token'];
@@ -56,8 +60,17 @@ export class StartPageComponent implements AfterViewInit {
 
     dialogRef.afterClosed().subscribe(result => {
       this.routeData.guests_count = result;
-      this.transactionService.createTransaction(this.routeData).subscribe(response => {
-        console.log(response);
+      this.transactionService.createTransaction(this.routeData).subscribe((data: any) => {
+        data = JSON.parse(data);
+        this.cookie.set('account', this.routeData.accountname);
+        this.cookie.set('token', this.routeData.token);
+        this.cookie.set('transaction', JSON.stringify(data.response));
+
+        this.router.navigate(
+          ['.'],
+          { relativeTo: this.route }
+        );
+        window.location.reload();
       });
     });
   }
