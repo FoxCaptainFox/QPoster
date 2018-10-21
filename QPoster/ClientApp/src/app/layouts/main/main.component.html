@@ -2,13 +2,16 @@
   <div class="header">
     <div *ngIf="isButtonVisible" class="back-button" (click)="backClick()"><i class="fa fa-arrow-left"></i></div>
     <h3>{{(companyName | async)?.value}}</h3>
+    <div *ngIf="isButtonConfirmVisible" class="confirm-button" (click)="confirmClick()"><i class="fas fa-check"></i></div>
   </div>
   <div class="notification">
     <button mat-fab color="primary"><i class="fas fa-bell"></i></button>
   </div>
-  <mat-tab-group headerPosition="below" selectedIndex="1">
+  <mat-tab-group headerPosition="below" selectedIndex="1" (selectedIndexChange)="setVisibility($event)">
     <mat-tab label="Check">
-      <div class="content">asd asd sd</div>
+      <div class="content">
+        <app-check [checkProducts]="checkProducts"></app-check>
+      </div>
     </mat-tab>
     <mat-tab label="Menu">
       <div class="content">

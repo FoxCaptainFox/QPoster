@@ -35,7 +35,7 @@
     top:0;
 }
 
-.header .back-button {
+.header .back-button, .header .confirm-button {
     color: white;
     position: absolute;
     left: 10px;
@@ -54,6 +54,12 @@
     padding: 0;
 }
 
+.app-main .header .confirm-button {
+    right: 10px;
+    left: unset;
+    /* top: 10px; */
+}
+
 .header h3{
     margin: 0 auto;
 }
@@ -64,4 +70,3 @@
     bottom: 10%;
     z-index: 30;
 }
-

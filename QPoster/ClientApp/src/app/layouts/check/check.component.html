@@ -1,0 +1,13 @@
+<mat-list>
+  <h1 mat-subheader>Your check</h1>
+  <mat-divider></mat-divider>
+  <mat-list-item *ngFor="let product of checkProducts">
+    <h5 mat-line class="name">{{product.name}}</h5>
+    <h5 mat-line class="count">{{product.count}} шт</h5>
+    <h5 mat-line class="price">{{product.price/100}}</h5>
+    <mat-divider></mat-divider>
+  </mat-list-item>
+</mat-list>
+<div class="btn">
+  <button mat-raised-button color="primary" (click)="openDialog()">Checkout</button>
+</div>
