@@ -67,7 +67,21 @@ namespace QPoster.Controllers.API
 			}
 		}
 
-        [HttpGet("CallWaiter")]
+		[HttpGet("GetProducts/{transactionId}")]
+		public async Task<IActionResult> GetProducts(int transactionId)
+		{
+			try
+			{
+				var result = await _transactionService.GetProducts(transactionId);
+				return Ok(result);
+			}
+			catch (Exception ex)
+			{
+				return Content(500, ex);
+			}
+		}
+
+		[HttpGet("CallWaiter")]
         public async Task<IActionResult> CallWaiter(int transactionId)
         {
             try

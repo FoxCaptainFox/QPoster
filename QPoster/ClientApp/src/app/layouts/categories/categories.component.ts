@@ -1,10 +1,13 @@
 import { Component, OnInit, ViewEncapsulation, Input} from '@angular/core';
 import { ICategory } from '../../models/ICategory';
+import { IProductDataModel } from '../../models/IProductDataModel';
 import { IProduct } from '../../models/IProduct';
 import { Observable } from 'rxjs';
 import { MenuService } from '../../services/menu.service';
 import { map } from 'rxjs/operators';
 import { CategoriesService } from 'src/app/services/local/categories.service';
+import { TransactionService } from '../../services/http/transaction.service';
+import { CookieService } from 'ngx-cookie-service';
 
 
 @Component({
@@ -16,7 +19,6 @@ import { CategoriesService } from 'src/app/services/local/categories.service';
 export class CategoriesComponent implements OnInit {
   @Input() companyName: string;
 
-  isBtnVisible = false;
   categories: Observable<ICategory[]>;
   products: Observable<IProduct[]>;
   productsToBuy: IProduct[] = [];
@@ -24,7 +26,9 @@ export class CategoriesComponent implements OnInit {
   category_id;
 
   constructor(private menuService: MenuService,
-    private categoriesService: CategoriesService) { }
+    private categoriesService: CategoriesService,
+    private transactionService: TransactionService,
+    private cookie: CookieService) { }
 
   ngOnInit() {
     this.getDefaultMenu();
@@ -32,6 +36,26 @@ export class CategoriesComponent implements OnInit {
     this.categoriesService.clickEvent.subscribe(() => {
       this.categoriesService.setButtonVisibility(false);
       this.getDefaultMenu();
+    });
+
+    this.categoriesService.confirmMenuEvent.subscribe(() => {
+      if(this.productsToBuy.length == 0){
+        return;
+      }
+      else{
+        let productsToServer: IProductDataModel[] = [];
+        this.productsToBuy.forEach(product => {
+          productsToServer.push({
+            name : product.product_name,
+            transactionId : +JSON.parse(this.cookie.get('transaction')).transaction_id,
+            productId : +product.product_id as number,
+            price : +product.price[1] as number,
+            count : +product.count
+          })
+        });
+        this.transactionService.addTransaction(productsToServer).subscribe();
+      }
+      this.productsToBuy = [];
     });
   }
 

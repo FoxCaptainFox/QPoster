@@ -6,6 +6,7 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatExpansionModule } from '@angular/material/expansion';
 import {MatButtonModule} from '@angular/material/button';
+import {MatListModule} from '@angular/material/list';
 
 import { AppComponent } from './app.component';
 import { StartPageModule } from './layouts/start-page/start-page.module';
@@ -18,6 +19,9 @@ import { ProductComponent } from './components/product/product.component';
 import { MenuService } from './services/menu.service';
 import { CookieService } from 'ngx-cookie-service';
 import { CategoriesService } from './services/local/categories.service';
+import { CheckComponent } from './layouts/check/check.component';
+import { EndDialogComponent } from './components/end-dialog/end-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
 import { NotificationService } from './services/http/notificationService';
 
 @NgModule({
@@ -28,6 +32,8 @@ import { NotificationService } from './services/http/notificationService';
     CategoriesComponent,
     CategoryComponent,
     ProductComponent,
+    CheckComponent,
+    EndDialogComponent,
   ],
   imports: [
     BrowserAnimationsModule,
@@ -37,7 +43,9 @@ import { NotificationService } from './services/http/notificationService';
     MatExpansionModule,
     HttpClientModule,
     MatButtonModule,
+    MatListModule,
     StartPageModule,
+    MatDialogModule,
     RouterModule.forRoot([]),
   ],
   exports: [
@@ -50,6 +58,9 @@ import { NotificationService } from './services/http/notificationService';
     CategoriesService,
     NotificationService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    EndDialogComponent
+  ]
 })
 export class AppModule { }

@@ -56,8 +56,21 @@ namespace QPoster.Services
 				{
 					var content = JsonConvert.SerializeObject(posterModel);
 					var abc = await client.PostAsync(url, new StringContent(content, Encoding.UTF8, "application/json"));
+				}
+
+				var cba = _transactionProductsRepository.Find(x => x.ProductId == transactionProducts.ProductId && x.TransactionId == transactionProducts.TransactionId);
+				if (cba.Count() == 0)
+				{
+					//no occurences
 					_transactionProductsRepository.Insert(transactionProducts);
 				}
+				else
+				{
+					var ab = cba.First();
+					ab.Count += transactionProducts.Count;
+					_transactionProductsRepository.Update(ab);
+				}
+				
 			}			
 			_transactionRepository.SaveChanges();
 			
@@ -90,5 +103,11 @@ namespace QPoster.Services
             
             return response;
         }
-    }
+
+		public async Task<List<TransactionProducts>> GetProducts(int transactionId)
+		{
+			var result = _transactionProductsRepository.Find(x => x.TransactionId == transactionId).ToList();
+			return result;
+		}
+	}
 }

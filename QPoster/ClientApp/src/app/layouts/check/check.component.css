@@ -1,0 +1,39 @@
+.mat-tab-body-wrapper {
+    background: white;
+}
+
+.mat-list .mat-subheader{
+    font-size: 20px;
+    color: black;
+}
+
+.mat-list .mat-list-item .mat-list-item-content .mat-list-text {
+    flex-direction: row;
+}
+
+.mat-list .mat-list-item .mat-list-item-content .mat-list-text .mat-line{
+    flex-shrink: 0;
+    padding-left: 15px;
+    font-size: 16px;
+}
+
+.mat-list .mat-list-item .mat-list-item-content .mat-list-text .mat-line.name {
+    padding-left: 20px;
+    box-sizing: border-box;
+    width: 100%;
+    flex-shrink: 1;
+}
+
+.count, .price{
+    flex-shrink: 0;
+}
+
+.price {
+    font-weight: bold;
+}
+
+.btn {
+    margin-top: 5%;
+    text-align: center;
+}
+

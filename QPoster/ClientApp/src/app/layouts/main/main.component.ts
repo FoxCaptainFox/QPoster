@@ -1,9 +1,11 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { AboutService } from '../../services/about-service.service';
 import { ICompanyNameOrLogo } from '../../models/ICompanyNameOrLogo';
+import { IProductDataModel } from '../../models/IProductDataModel';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { CategoriesService } from 'src/app/services/local/categories.service';
+import { TransactionService } from '../../services/http/transaction.service';
 import { NotificationService } from 'src/app/services/http/notificationService';
 
 @Component({
@@ -15,10 +17,14 @@ import { NotificationService } from 'src/app/services/http/notificationService';
 export class MainComponent implements OnInit {
   companyName: Observable<ICompanyNameOrLogo>;
 
+  selectedTab = 1;
   isButtonVisible = false;
+  isButtonConfirmVisible = true;
+  checkProducts : IProductDataModel[] = [];
 
   constructor(private aboutService: AboutService,
     private categotiesService: CategoriesService,
+    private transactionService: TransactionService,
     private notificationService: NotificationService) { }
 
   ngOnInit() {
@@ -35,7 +41,30 @@ export class MainComponent implements OnInit {
     this.categotiesService.clickEvent.emit();
   }
 
+  confirmClick() {
+    this.selectedTab = 0;
+    this.categotiesService.confirmMenuEvent.emit();
+  }
+
+  setVisibility(num:any){
+    switch(num){
+      case 1:{
+        this.isButtonConfirmVisible = true;
+        break;
+      }
+      case 0:{
+        this.checkProducts = []
+        this.isButtonConfirmVisible = false;
+        this.transactionService.getTransaction()
+        .subscribe((data:IProductDataModel[]) => (this.checkProducts = data));
+      }
+      case 2:{
+        this.isButtonConfirmVisible = false;
+      }
+    }
+  }
   notify() {
     this.notificationService.notify().subscribe();
   }
 }
+
