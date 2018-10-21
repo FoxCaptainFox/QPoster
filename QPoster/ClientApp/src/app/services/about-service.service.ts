@@ -1,20 +1,29 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AboutService {
 
-  private url: string = "https://posterhack.joinposter.com/api/settings."
-
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private cookie: CookieService) { }
 
   getCompanyName() {
-    return this.http.get(this.url + "getCompanyName?token=0014391df7bd6edecce3ec8f44f1ef54");
+
+    const companyName: string = this.cookie.get('account');
+    const token: string = this.cookie.get('token');
+
+    return this.http.get(`https://${companyName}.joinposter.com/api/settings.getCompanyName?token=${token}`);
   }
 
   getCompanyLogo() {
-    return this.http.get(this.url + "getAllSettings?token=0014391df7bd6edecce3ec8f44f1ef54");
+
+    const companyName: string = this.cookie.get('account');
+    const token: string = this.cookie.get('token');
+
+    return this.http.get(`https://${companyName}.joinposter.com/api/settings.getAllSettings?token=${token}`);
   }
 }

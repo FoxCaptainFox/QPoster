@@ -1,24 +1,30 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MenuService {
 
-  private url: string = "https://posterhack.joinposter.com/api/menu."
-
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private cookie: CookieService
+  ) { }
 
   getCategories() {
-    return this.http.get(this.url + "getCategories?token=0014391df7bd6edecce3ec8f44f1ef54");
+
+    const companyName: string = this.cookie.get('account');
+    const token: string = this.cookie.get('token');
+
+    return this.http.get(`https://${companyName}.joinposter.com/api/menu.getCategories?token=${token}`);
   }
 
-  getProducts(categotyId?){
-    const params = new HttpParams();
-    if(categotyId){
-      params.append('category_id', categotyId);
-    }
-    return this.http.get(this.url + `getProducts?token=0014391df7bd6edecce3ec8f44f1ef54&category_id=${categotyId}`, {params: params});
+  getProducts(categoryId) {
+
+    const companyName: string = this.cookie.get('account');
+    const token: string = this.cookie.get('token');
+
+    return this.http.get(`https://${companyName}.joinposter.com/api/menu.getProducts?token=${token}&category_id=${categoryId}`);
   }
 }
