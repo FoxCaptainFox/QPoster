@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using QPoster.Database;
 using QPoster.Database.Models;
 using QPoster.Models.RequestModels;
@@ -48,15 +49,22 @@ namespace QPoster.Controllers.API
         }
 
         [HttpGet("CallWaiter")]
-        public async Task<IActionResult> CallWaiter(int terminalId)
+        public async Task<IActionResult> CallWaiter(int terminalId, int tableId)
         {
             try
             {
                 var socketKey = _connectionManager.Connections.Keys.Where(i => i.TerminalId == terminalId).FirstOrDefault();
                 var socket = _connectionManager.Connections[socketKey];
 
+                var notificationMessage = new
+                {
+                    terminalId,
+                    tableId
+                };
+                var json = JsonConvert.SerializeObject(notificationMessage);
+
                 if (socket != null)
-                    await _webSocketHandler.SendMessageAsync(terminalId.ToString(), socket);
+                    await _webSocketHandler.SendMessageAsync(json, socket);
                 else
                     throw new Exception();
 
