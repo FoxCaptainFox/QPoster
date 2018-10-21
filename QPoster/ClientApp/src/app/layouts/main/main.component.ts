@@ -17,6 +17,7 @@ import { NotificationService } from 'src/app/services/http/notificationService';
 export class MainComponent implements OnInit {
   companyName: Observable<ICompanyNameOrLogo>;
 
+  selectedTab = 1;
   isButtonVisible = false;
   isButtonConfirmVisible = true;
   checkProducts : IProductDataModel[] = [];
@@ -41,6 +42,7 @@ export class MainComponent implements OnInit {
   }
 
   confirmClick() {
+    this.selectedTab = 0;
     this.categotiesService.confirmMenuEvent.emit();
   }
 

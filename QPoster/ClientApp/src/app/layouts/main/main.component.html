@@ -7,7 +7,7 @@
   <div class="notification" (click)="notify()">
     <button mat-fab color="primary"><i class="fas fa-bell"></i></button>
   </div>
-  <mat-tab-group headerPosition="below" selectedIndex="1" (selectedIndexChange)="setVisibility($event)">
+  <mat-tab-group headerPosition="below" [selectedIndex]="selectedTab" (selectedIndexChange)="setVisibility($event)">
     <mat-tab label="Check">
       <div class="content">
         <app-check [checkProducts]="checkProducts"></app-check>
