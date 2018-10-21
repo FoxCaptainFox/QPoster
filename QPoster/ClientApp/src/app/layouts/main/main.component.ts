@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { AboutService } from '../../services/about-service.service';
-import { ICompanyNameOrLogo } from '../../models/ICompanyNameOrLogo'
+import { ICompanyNameOrLogo } from '../../models/ICompanyNameOrLogo';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { CategoriesService } from 'src/app/services/local/categories.service';
 
 @Component({
   selector: 'app-main',
@@ -13,12 +14,22 @@ import { map } from 'rxjs/operators';
 export class MainComponent implements OnInit {
   companyName: Observable<ICompanyNameOrLogo>;
 
-  constructor(private aboutService: AboutService) { }
+  isButtonVisible = false;
+
+  constructor(private aboutService: AboutService,
+    private categotiesService: CategoriesService) { }
 
   ngOnInit() {
     this.companyName = this.aboutService.getCompanyName().pipe(
       map((x: any) => x.response as ICompanyNameOrLogo)
     );
+
+    this.categotiesService.buttonIsVisible.subscribe(visibility => {
+      this.isButtonVisible = visibility;
+    });
   }
 
+  backClick() {
+    this.categotiesService.clickEvent.emit();
+  }
 }

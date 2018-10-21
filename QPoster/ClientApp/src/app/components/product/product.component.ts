@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { IProduct } from '../../models/IProduct';
 
 @Component({
@@ -9,6 +9,8 @@ import { IProduct } from '../../models/IProduct';
 export class ProductComponent implements OnInit {
 
   @Input() product: IProduct;
+  @Output() onAdded = new EventEmitter<IProduct>();
+  @Output() onDeleted = new EventEmitter<IProduct>();
 
   constructor() { }
 
@@ -23,10 +25,17 @@ export class ProductComponent implements OnInit {
   }
 
   increaseDecreaseCount(flag: Boolean){
-    console.log(flag);
     if (this.product.count == 0 && !flag){
       return;
     }
-    flag ? this.product.count++ : this.product.count--;
+
+    if (flag){
+      this.product.count++;
+      this.onAdded.emit(this.product);
+    }
+    else{
+      this.product.count--;
+      this.onDeleted.emit(this.product);
+    }
   }
 }

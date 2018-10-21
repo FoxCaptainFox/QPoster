@@ -1,14 +1,5 @@
-<div class="header">
-    <div class="btn-left" (click)="onBtnClick()">
-        <button mat-button *ngIf="isBtnVisible"><i class="fas fa-arrow-left"></i></button>
-    </div>
-    <h3>{{(companyName | async)?.value}}</h3>
-    <div class="btn-right" (click)="onBtnClick()">
-        <button mat-button *ngIf="isBtnVisible"><i class="fas fa-check"></i></button>
-    </div>
-</div>
 <mat-accordion>
-    <mat-expansion-panel *ngIf="(categories | async)?.length">
+    <mat-expansion-panel *ngIf="(categories | async)?.length" [expanded]="true">
         <mat-expansion-panel-header>
             <mat-panel-title>
                 Categories
@@ -20,14 +11,14 @@
             </div>
         </ng-container>
     </mat-expansion-panel>
-    <mat-expansion-panel *ngIf="(products | async)?.length">
+    <mat-expansion-panel *ngIf="(products | async)?.length" [expanded]="true">
         <mat-expansion-panel-header>
             <mat-panel-title>
                 Products
             </mat-panel-title>
         </mat-expansion-panel-header>
         <ng-container *ngFor="let product of (products | async)">
-            <app-product [product]="product"></app-product>
+            <app-product [product]="product" (onAdded)="addToCheck($event)" (onDeleted)="deleteFromCheck($event)"></app-product>
         </ng-container>
     </mat-expansion-panel>
 </mat-accordion>

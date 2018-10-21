@@ -17,6 +17,7 @@ import { CategoryComponent } from './components/category/category.component';
 import { ProductComponent } from './components/product/product.component';
 import { MenuService } from './services/menu.service';
 import { CookieService } from 'ngx-cookie-service';
+import { CategoriesService } from './services/local/categories.service';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { CookieService } from 'ngx-cookie-service';
     HttpClient,
     MenuService,
     CookieService,
+    CategoriesService,
   ],
   bootstrap: [AppComponent]
 })
