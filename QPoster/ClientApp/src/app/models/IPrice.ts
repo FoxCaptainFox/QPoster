@@ -1,4 +1,4 @@
 export interface IPrice {
-    1: string;
-    2: string;
+    1: number;
+    2: number;
 }
