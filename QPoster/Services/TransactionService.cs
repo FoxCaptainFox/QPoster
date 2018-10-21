@@ -90,5 +90,11 @@ namespace QPoster.Services
             
             return response;
         }
-    }
+
+		public async Task<List<TransactionProducts>> GetProducts(int transactionId)
+		{
+			var result = _transactionProductsRepository.Find(x => x.TransactionId == transactionId).ToList();
+			return result;
+		}
+	}
 }
