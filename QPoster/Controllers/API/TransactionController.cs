@@ -68,24 +68,26 @@ namespace QPoster.Controllers.API
 		}
 
         [HttpGet("CallWaiter")]
-        public async Task<IActionResult> CallWaiter(int terminalId, int transactionId)
+        public async Task<IActionResult> CallWaiter(int transactionId)
         {
             try
             {
-                var tableId = _transactionsRepository.First(i => i.TransactionId == transactionId).TableId;
+                var transaction = _transactionsRepository.First(i => i.TransactionId == transactionId);
+
+                var terminalId = transaction.SpotTabletId;
+
+                var tableId = transaction.TableId;
+
+                var accountName = transaction.AccountName;
 
                 var socketKey = _connectionManager.Connections.Keys.Where(i => i.TerminalId == terminalId).FirstOrDefault();
                 var socket = _connectionManager.Connections[socketKey];
 
-                var notificationMessage = new
-                {
-                    terminalId,
-                    tableId
-                };
+                var notificationMessage = new { tableId };
                 var json = JsonConvert.SerializeObject(notificationMessage);
 
                 if (socket != null)
-                    await _webSocketHandler.SendMessageAsync(json, socket);
+                    await _webSocketHandler.SendMessageAsync(json, socket, terminalId, accountName);
                 else
                     throw new Exception();
 

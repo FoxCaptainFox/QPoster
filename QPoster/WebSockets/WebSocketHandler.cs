@@ -25,7 +25,7 @@ namespace QPoster.WebSockets
             await ConnectionManager.RemoveSocketAsync(socket);
         }
 
-        public async Task SendMessageAsync(string message, WebSocket socket)
+        public async Task SendMessageAsync(string message, WebSocket socket, int terminalId, string accountName)
         {
             if (socket.State != WebSocketState.Open)
             {
@@ -33,15 +33,21 @@ namespace QPoster.WebSockets
                 return;
             }
 
-            var bytes = Encoding.UTF8.GetBytes(message);
-            await socket.SendAsync(new ArraySegment<byte>(array: bytes,
-                                                          offset: 0,
-                                                          count: bytes.Length),
-                                   WebSocketMessageType.Text,
-                                   true,
-                                   CancellationToken.None);
+            foreach (var s in ConnectionManager.Connections)
+            {
+                if (s.Key.TerminalId == terminalId && s.Key.AccountName == accountName)
+                {
+                    var bytes = Encoding.UTF8.GetBytes(message);
+                    await socket.SendAsync(new ArraySegment<byte>(array: bytes,
+                                                                  offset: 0,
+                                                                  count: bytes.Length),
+                                           WebSocketMessageType.Text,
+                                           true,
+                                           CancellationToken.None);
+                }
+            }
         }
 
-        public abstract Task ReceiveAsync(WebSocket socket, WebSocketReceiveResult result, byte[] buffer);
+        //public abstract Task ReceiveAsync(WebSocket socket, WebSocketReceiveResult result, byte[] buffer);
     }
 }

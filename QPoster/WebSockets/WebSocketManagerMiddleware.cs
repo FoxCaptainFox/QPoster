@@ -51,7 +51,7 @@ namespace QPoster.WebSockets
             {
                 if (result.MessageType == WebSocketMessageType.Text)
                 {
-                    await _webSocketHandler.ReceiveAsync(socket, result, buffer);
+                    //await _webSocketHandler.ReceiveAsync(socket, result, buffer);
                     return;
                 }
                 else if (result.MessageType == WebSocketMessageType.Close)
