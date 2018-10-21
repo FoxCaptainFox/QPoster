@@ -32,13 +32,13 @@ namespace QPoster.Database.Models
 
         #region Navigation props
 
-        public virtual ICollection<TransactionProducts> TransactionProducts { get; set; }
+        //public virtual ICollection<TransactionProducts> TransactionProducts { get; set; }
 
 		#endregion
 
-		public Transaction()
-		{
-			TransactionProducts = new List<TransactionProducts>();
-		}
+		//public Transaction()
+		//{
+		//	TransactionProducts = new List<TransactionProducts>();
+		//}
     }
 }

@@ -67,7 +67,6 @@ namespace QPoster.Controllers.API
 				return Content(500, ex);
 			}
 		}
-	}
 
 	[HttpGet("CallWaiter")]
         public async Task<IActionResult> CallWaiter(int terminalId, int tableId)
