@@ -1,4 +1,8 @@
 <div class="app-main">
+  <div class="header">
+      <div *ngIf="isButtonVisible" class="back-button" (click)="backClick()"><i class="fa fa-arrow-left"></i></div>
+      <h3>{{(companyName | async)?.value}}</h3>
+  </div>
   <mat-tab-group headerPosition="below" selectedIndex="1">
     <mat-tab label="Check">
         <div class="content">asd asd sd</div>
