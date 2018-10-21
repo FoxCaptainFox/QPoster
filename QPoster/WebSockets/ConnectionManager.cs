@@ -1,4 +1,6 @@
-﻿using System.Collections.Concurrent;
+﻿using System;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net.WebSockets;
 using System.Threading;
@@ -30,6 +32,18 @@ namespace QPoster.WebSockets
             {
                 await sock.CloseAsync(WebSocketCloseStatus.NormalClosure, "Connection closed", CancellationToken.None);
             }
+        }
+
+        public override bool Equals(object obj)
+        {
+            var manager = obj as ConnectionManager;
+            return manager != null &&
+                   EqualityComparer<ConcurrentDictionary<ConnectionKey, WebSocket>>.Default.Equals(Connections, manager.Connections);
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Connections);
         }
     }
 }
