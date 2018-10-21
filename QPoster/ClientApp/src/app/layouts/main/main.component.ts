@@ -4,6 +4,7 @@ import { ICompanyNameOrLogo } from '../../models/ICompanyNameOrLogo';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { CategoriesService } from 'src/app/services/local/categories.service';
+import { NotificationService } from 'src/app/services/http/notificationService';
 
 @Component({
   selector: 'app-main',
@@ -17,7 +18,8 @@ export class MainComponent implements OnInit {
   isButtonVisible = false;
 
   constructor(private aboutService: AboutService,
-    private categotiesService: CategoriesService) { }
+    private categotiesService: CategoriesService,
+    private notificationService: NotificationService) { }
 
   ngOnInit() {
     this.companyName = this.aboutService.getCompanyName().pipe(
@@ -31,5 +33,9 @@ export class MainComponent implements OnInit {
 
   backClick() {
     this.categotiesService.clickEvent.emit();
+  }
+
+  notify() {
+    this.notificationService.notify().subscribe();
   }
 }
