@@ -18,6 +18,7 @@ import { ProductComponent } from './components/product/product.component';
 import { MenuService } from './services/menu.service';
 import { CookieService } from 'ngx-cookie-service';
 import { CategoriesService } from './services/local/categories.service';
+import { NotificationService } from './services/http/notificationService';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { CategoriesService } from './services/local/categories.service';
     MenuService,
     CookieService,
     CategoriesService,
+    NotificationService
   ],
   bootstrap: [AppComponent]
 })
