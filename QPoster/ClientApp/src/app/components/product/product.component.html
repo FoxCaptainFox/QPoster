@@ -1,8 +1,9 @@
 <div class="product-item">
-    <div class="container">
-      <img class="image" [src]="transformImage(product.photo)"/>
-    </div>
-    <div class="product-name">{{product.product_name}}</div>
-    <div class="product-name">{{product.price.first}}</div>
+  <div class="container">
+    <img class="image" [src]="transformImage(product.photo)" />
   </div>
-  
+  <div class="product-items">
+    <div class="product-name">{{product.product_name}}</div>
+    <div class="product-name">Price: {{product.price[1]/100}} грн</div>
+  </div>
+</div>

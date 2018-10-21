@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Input} from '@angular/core';
 import { ICategory } from '../../models/ICategory';
 import { IProduct } from '../../models/IProduct';
 import { Observable } from 'rxjs';
@@ -13,7 +13,9 @@ import { map } from 'rxjs/operators';
   encapsulation: ViewEncapsulation.None,
 })
 export class CategoriesComponent implements OnInit {
+  @Input() companyName: string;
 
+  isBtnVisible = false;
   categories: Observable<ICategory[]>; 
   products: Observable<IProduct[]>; 
   parentCategory = null;
@@ -22,31 +24,21 @@ export class CategoriesComponent implements OnInit {
   constructor(private menuService: MenuService) { }
 
   ngOnInit() {
-    this.getMenu()
+    this.getDefaultMenu()
   }
 
-  getMenu(){
-    this.categories = this.menuService.getCategories().pipe(
-      map((result: any) => {
-        return result.response as ICategory[]
-      })
-    );
-
-    this.categories.subscribe();
-
-    this.products = this.menuService.getProducts(1).pipe(
-      map((result: any) => {
-        return result.response as IProduct[];
-      })
-    );
-
-    this.products.subscribe();
+  getDefaultMenu(){
+    this.getCategories();
+    this.getProducts(0);
   }
 
   getProductsInCategory(category_id){
-    console.log(category_id);
+    this.isBtnVisible = true;
     this.categories = new Observable<ICategory[]>();
+    this.getProducts(category_id);
+  }
 
+  getProducts(category_id){
     this.products = this.menuService.getProducts(category_id).pipe(
       map((result: any) => {
         return result.response as IProduct[];
@@ -54,5 +46,20 @@ export class CategoriesComponent implements OnInit {
     );
 
     this.products.subscribe();
+  }
+
+  getCategories(){
+    this.categories = this.menuService.getCategories().pipe(
+      map((result: any) => {
+        return result.response as ICategory[]
+      })
+    );
+
+    this.categories.subscribe();
+  }
+
+  onBtnClick(){
+    this.isBtnVisible = false;
+    this.getDefaultMenu()
   }
 }

@@ -16,8 +16,8 @@ export class ProductComponent implements OnInit {
   }
 
   transformImage(image: string) {
-    if(image == null){
-      return 'assets/images/default_product.png'
+    if(image == ''){
+      return 'assets/images/default_product.png';
     }
     return `https://posterhack.joinposter.com${image}`;
   }

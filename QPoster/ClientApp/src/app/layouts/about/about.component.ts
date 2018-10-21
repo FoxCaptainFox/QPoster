@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { AboutService } from '../../services/about-service.service';
 import { ICompanyNameOrLogo } from '../../models/ICompanyNameOrLogo'
 import { Observable } from 'rxjs';
@@ -12,6 +12,7 @@ import { map } from 'rxjs/operators';
   providers: [AboutService]
 })
 export class AboutComponent implements OnInit {
+  @Input() companyName: string;
 
   companyLogo : ICompanyNameOrLogo = {} as any;
   hasLogo = true;

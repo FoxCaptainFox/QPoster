@@ -1,6 +1,8 @@
+import { IPrice } from './IPrice';
+
 export interface IProduct {
     photo: string;
-    price: number;
+    price: IPrice;
     product_name: string;
     product_production_description: string;
 }

@@ -11,8 +11,7 @@ import { map } from 'rxjs/operators';
   encapsulation: ViewEncapsulation.None
 })
 export class MainComponent implements OnInit {
-
-  companyName : Observable<ICompanyNameOrLogo>;
+  companyName: Observable<ICompanyNameOrLogo>;
 
   constructor(private aboutService: AboutService) { }
 
