@@ -12,3 +12,17 @@ C:\Users\Nikita\Desktop\QPoster\QPoster\obj\Debug\netcoreapp2.1\QPoster.RazorTar
 C:\Users\Nikita\Desktop\QPoster\QPoster\bin\Debug\netcoreapp2.1\QPoster.pdb
 C:\Users\Nikita\Desktop\QPoster\QPoster\obj\Debug\netcoreapp2.1\QPoster.dll
 C:\Users\Nikita\Desktop\QPoster\QPoster\obj\Debug\netcoreapp2.1\QPoster.pdb
+C:\Users\Хайзенберг\Source\Repos\QPoster\QPoster\obj\Debug\netcoreapp2.1\QPoster.csprojAssemblyReference.cache
+C:\Users\Хайзенберг\Source\Repos\QPoster\QPoster\obj\Debug\netcoreapp2.1\QPoster.dll
+C:\Users\Хайзенберг\Source\Repos\QPoster\QPoster\obj\Debug\netcoreapp2.1\QPoster.pdb
+C:\Users\Хайзенберг\Source\Repos\QPoster\QPoster\bin\Debug\netcoreapp2.1\QPoster.deps.json
+C:\Users\Хайзенберг\Source\Repos\QPoster\QPoster\bin\Debug\netcoreapp2.1\QPoster.runtimeconfig.json
+C:\Users\Хайзенберг\Source\Repos\QPoster\QPoster\bin\Debug\netcoreapp2.1\QPoster.runtimeconfig.dev.json
+C:\Users\Хайзенберг\Source\Repos\QPoster\QPoster\bin\Debug\netcoreapp2.1\QPoster.dll
+C:\Users\Хайзенберг\Source\Repos\QPoster\QPoster\bin\Debug\netcoreapp2.1\QPoster.pdb
+C:\Users\Хайзенберг\Source\Repos\QPoster\QPoster\obj\Debug\netcoreapp2.1\QPoster.csproj.CoreCompileInputs.cache
+C:\Users\Хайзенберг\Source\Repos\QPoster\QPoster\obj\Debug\netcoreapp2.1\QPoster.RazorAssemblyInfo.cache
+C:\Users\Хайзенберг\Source\Repos\QPoster\QPoster\obj\Debug\netcoreapp2.1\QPoster.RazorAssemblyInfo.cs
+C:\Users\Хайзенберг\Source\Repos\QPoster\QPoster\obj\Debug\netcoreapp2.1\QPoster.AssemblyInfoInputs.cache
+C:\Users\Хайзенберг\Source\Repos\QPoster\QPoster\obj\Debug\netcoreapp2.1\QPoster.AssemblyInfo.cs
+C:\Users\Хайзенберг\Source\Repos\QPoster\QPoster\obj\Debug\netcoreapp2.1\QPoster.RazorTargetAssemblyInfo.cache

@@ -9,15 +9,18 @@ namespace QPoster.Database.Models
         public int Id { get; set; }
 
         [Required]
-        public int TransactionId { get; set; }
-
-        [Required]
         public int ProductId { get; set; }
 
         [Required]
         public int Count { get; set; }
 
-        [Required]
+		[Required]
+		public int Price { get; set; }
+
+		[Required]
+		public int TransactionId { get; set; }
+
+		[Required]
         public TransactionProductStatus Status { get; set; }
 
         #region Navigation props

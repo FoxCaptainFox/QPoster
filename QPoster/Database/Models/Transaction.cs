@@ -15,7 +15,10 @@ namespace QPoster.Database.Models
         [Required]
         public int SpotId { get; set; }
 
-        [Required]
+		[Required]
+		public int TableId { get; set; }
+
+		[Required]
         public int SpotTabletId { get; set; }
 
         [Required]
@@ -31,6 +34,11 @@ namespace QPoster.Database.Models
 
         public virtual ICollection<TransactionProducts> TransactionProducts { get; set; }
 
-        #endregion
+		#endregion
+
+		public Transaction()
+		{
+			TransactionProducts = new List<TransactionProducts>();
+		}
     }
 }
