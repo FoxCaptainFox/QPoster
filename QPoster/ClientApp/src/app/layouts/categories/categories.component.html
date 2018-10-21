@@ -1,8 +1,11 @@
 <div class="header">
-    <div class="btn" (click)="onBtnClick()">
+    <div class="btn-left" (click)="onBtnClick()">
         <button mat-button *ngIf="isBtnVisible"><i class="fas fa-arrow-left"></i></button>
     </div>
     <h3>{{(companyName | async)?.value}}</h3>
+    <div class="btn-right" (click)="onBtnClick()">
+        <button mat-button *ngIf="isBtnVisible"><i class="fas fa-check"></i></button>
+    </div>
 </div>
 <mat-accordion>
     <mat-expansion-panel *ngIf="(categories | async)?.length">

@@ -41,7 +41,11 @@ export class CategoriesComponent implements OnInit {
   getProducts(category_id){
     this.products = this.menuService.getProducts(category_id).pipe(
       map((result: any) => {
-        return result.response as IProduct[];
+        const temp = result.response as IProduct[];
+        temp.forEach(element => {
+          element.count = 0;
+        });
+        return temp
       })
     );
 

@@ -22,4 +22,11 @@ export class ProductComponent implements OnInit {
     return `https://posterhack.joinposter.com${image}`;
   }
 
+  increaseDecreaseCount(flag: Boolean){
+    console.log(flag);
+    if (this.product.count == 0 && !flag){
+      return;
+    }
+    flag ? this.product.count++ : this.product.count--;
+  }
 }
