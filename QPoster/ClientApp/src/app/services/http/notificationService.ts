@@ -11,6 +11,6 @@ export class NotificationService {
 
   notify() {
     const transaction = JSON.parse(this.cookie.get('transaction')).transaction_id;
-    return this.http.get(`http://192.168.5.141:58349/api/Transaction/CallWaiter?transactionId=${transaction}`);
+    return this.http.get(`http://taktashev-001-site1.dtempurl.com/api/Transaction/CallWaiter?transactionId=${transaction}`);
   }
 }

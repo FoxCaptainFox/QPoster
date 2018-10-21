@@ -9,6 +9,6 @@ export class TransactionService {
   constructor(private http: HttpClient) { }
 
   createTransaction(data: IGetTansactionModel) {
-    return this.http.post(`http://192.168.5.141:58349/api/Transaction/AddTransaction`, data);
+    return this.http.post(`http://taktashev-001-site1.dtempurl.com/api/Transaction/AddTransaction`, data);
   }
 }

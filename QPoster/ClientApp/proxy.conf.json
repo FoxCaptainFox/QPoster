@@ -1,6 +1,6 @@
 {
   "/api": {
-    "target": "http://192.168.5.141",
+    "target": "http://taktashev-001-site1.dtempurl.com",
     "secure": false,
     "pathRewrite": {
       "^/api": ""
