@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAse/tGzQ86UKEFgdH38Jg9AAAAAACAAAAAAAQZgAAAAEAACAAAAAYmi07/c/xdxLzrLB/EUlfweGdTQTIvKjZmz8Go37ToQAAAAAOgAAAAAIAACAAAAAFZkp4A/XrzIWmR1KobSuPnf3M0DrW7L3J3tgk3IMSJyAAAACSGN4chect371Y8u8sNvnkHGLLoI/0XQCeP3HKJhu3hkAAAADHGOh/39tB2FI/7OqS8fobRTJqw8M8gD26LoNkWviH6n66TYsu9pa8taXjDpeKI0GUCypPVyA+YMV4MIAzzjZI</EncryptedPassword>
+    <_PublishTargetUrl>ftp://ftp-eu.site4now.net/qposter</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="appsettings.Development.json">
+      <publishTime>10/22/2018 13:51:04</publishTime>
+    </File>
+    <File Include="appsettings.json">
+      <publishTime>10/22/2018 22:53:52</publishTime>
+    </File>
+    <File Include="dotnet-aspnet-codegenerator-design.dll">
+      <publishTime>06/07/2018 00:27:02</publishTime>
+    </File>
+    <File Include="Microsoft.CodeAnalysis.CSharp.Workspaces.dll">
+      <publishTime>04/30/2018 16:29:02</publishTime>
+    </File>
+    <File Include="Microsoft.CodeAnalysis.Workspaces.dll">
+      <publishTime>04/30/2018 16:29:04</publishTime>
+    </File>
+    <File Include="Microsoft.EntityFrameworkCore.Abstractions.dll">
+      <publishTime>09/20/2018 15:08:26</publishTime>
+    </File>
+    <File Include="Microsoft.EntityFrameworkCore.dll">
+      <publishTime>09/20/2018 15:08:30</publishTime>
+    </File>
+    <File Include="Microsoft.VisualStudio.Web.CodeGeneration.Contracts.dll">
+      <publishTime>06/07/2018 00:27:00</publishTime>
+    </File>
+    <File Include="Microsoft.VisualStudio.Web.CodeGeneration.Core.dll">
+      <publishTime>06/07/2018 00:26:58</publishTime>
+    </File>
+    <File Include="Microsoft.VisualStudio.Web.CodeGeneration.dll">
+      <publishTime>06/07/2018 00:26:54</publishTime>
+    </File>
+    <File Include="Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore.dll">
+      <publishTime>06/07/2018 00:26:56</publishTime>
+    </File>
+    <File Include="Microsoft.VisualStudio.Web.CodeGeneration.Templating.dll">
+      <publishTime>06/07/2018 00:27:02</publishTime>
+    </File>
+    <File Include="Microsoft.VisualStudio.Web.CodeGeneration.Utils.dll">
+      <publishTime>06/07/2018 00:27:02</publishTime>
+    </File>
+    <File Include="Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll">
+      <publishTime>06/07/2018 00:26:58</publishTime>
+    </File>
+    <File Include="NuGet.Frameworks.dll">
+      <publishTime>04/24/2018 21:27:10</publishTime>
+    </File>
+    <File Include="QPoster.deps.json">
+      <publishTime>10/23/2018 13:12:15</publishTime>
+    </File>
+    <File Include="QPoster.dll">
+      <publishTime>10/23/2018 13:03:52</publishTime>
+    </File>
+    <File Include="QPoster.pdb">
+      <publishTime>10/23/2018 13:03:52</publishTime>
+    </File>
+    <File Include="QPoster.runtimeconfig.json">
+      <publishTime>10/23/2018 13:12:15</publishTime>
+    </File>
+    <File Include="Remotion.Linq.dll">
+      <publishTime>09/27/2018 00:22:42</publishTime>
+    </File>
+    <File Include="Swashbuckle.AspNetCore.dll">
+      <publishTime>07/06/2018 17:09:06</publishTime>
+    </File>
+    <File Include="Swashbuckle.AspNetCore.Swagger.dll">
+      <publishTime>07/06/2018 17:09:02</publishTime>
+    </File>
+    <File Include="Swashbuckle.AspNetCore.SwaggerGen.dll">
+      <publishTime>07/06/2018 17:09:02</publishTime>
+    </File>
+    <File Include="Swashbuckle.AspNetCore.SwaggerUI.dll">
+      <publishTime>07/06/2018 17:09:04</publishTime>
+    </File>
+    <File Include="System.Composition.AttributedModel.dll">
+      <publishTime>09/27/2018 00:29:27</publishTime>
+    </File>
+    <File Include="System.Composition.Convention.dll">
+      <publishTime>09/27/2018 00:29:27</publishTime>
+    </File>
+    <File Include="System.Composition.Hosting.dll">
+      <publishTime>09/27/2018 00:29:27</publishTime>
+    </File>
+    <File Include="System.Composition.Runtime.dll">
+      <publishTime>09/27/2018 00:29:27</publishTime>
+    </File>
+    <File Include="System.Composition.TypedParts.dll">
+      <publishTime>09/27/2018 00:29:27</publishTime>
+    </File>
+    <File Include="System.Diagnostics.DiagnosticSource.dll">
+      <publishTime>09/18/2018 19:38:16</publishTime>
+    </File>
+    <File Include="System.Interactive.Async.dll">
+      <publishTime>09/27/2018 00:29:42</publishTime>
+    </File>
+    <File Include="web.config">
+      <publishTime>10/23/2018 13:12:15</publishTime>
+    </File>
+    <File Include="wwwroot/3rdpartylicenses.txt">
+      <publishTime>10/23/2018 12:35:25</publishTime>
+    </File>
+    <File Include="wwwroot/assets/images/background.jpg">
+      <publishTime>10/23/2018 12:35:25</publishTime>
+    </File>
+    <File Include="wwwroot/assets/images/default.png">
+      <publishTime>10/23/2018 12:35:25</publishTime>
+    </File>
+    <File Include="wwwroot/assets/images/default_product.png">
+      <publishTime>10/23/2018 12:35:25</publishTime>
+    </File>
+    <File Include="wwwroot/favicon.ico">
+      <publishTime>10/23/2018 12:35:25</publishTime>
+    </File>
+    <File Include="wwwroot/index.html">
+      <publishTime>10/23/2018 12:35:25</publishTime>
+    </File>
+    <File Include="wwwroot/main.3178ab1603d3a31930ad.js">
+      <publishTime>10/23/2018 12:35:25</publishTime>
+    </File>
+    <File Include="wwwroot/main.74db4e7376d3d8b4833f.js">
+      <publishTime>10/22/2018 14:14:31</publishTime>
+    </File>
+    <File Include="wwwroot/polyfills.f6ae3e8b63939c618130.js">
+      <publishTime>10/23/2018 12:35:25</publishTime>
+    </File>
+    <File Include="wwwroot/runtime.ec2944dd8b20ec099bf3.js">
+      <publishTime>10/23/2018 12:35:25</publishTime>
+    </File>
+    <File Include="wwwroot/styles.8790419ac0112f321009.css">
+      <publishTime>10/23/2018 12:35:25</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

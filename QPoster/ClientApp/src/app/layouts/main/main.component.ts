@@ -20,7 +20,7 @@ export class MainComponent implements OnInit {
   selectedTab = 1;
   isButtonVisible = false;
   isButtonConfirmVisible = true;
-  checkProducts : IProductDataModel[] = [];
+  checkProducts: IProductDataModel[] = [];
 
   constructor(private aboutService: AboutService,
     private categotiesService: CategoriesService,
@@ -42,23 +42,22 @@ export class MainComponent implements OnInit {
   }
 
   confirmClick() {
-    this.selectedTab = 0;
+    // this.selectedTab = 0;
     this.categotiesService.confirmMenuEvent.emit();
   }
 
-  setVisibility(num:any){
-    switch(num){
-      case 1:{
+  setVisibility(num: any) {
+    switch (num) {
+      case 1:
         this.isButtonConfirmVisible = true;
         break;
-      }
-      case 0:{
-        this.checkProducts = []
+      case 0:
+        this.checkProducts = [];
         this.isButtonConfirmVisible = false;
         this.transactionService.getTransaction()
-        .subscribe((data:IProductDataModel[]) => (this.checkProducts = data));
-      }
-      case 2:{
+        .subscribe((data: IProductDataModel[]) => (this.checkProducts = data));
+        break;
+      case 2: {
         this.isButtonConfirmVisible = false;
       }
     }

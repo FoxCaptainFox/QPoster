@@ -67,6 +67,6 @@
 .notification {
     position: absolute;
     right: 10px;
-    bottom: 10%;
+    bottom: 58px;
     z-index: 30;
 }

@@ -8,6 +8,8 @@ using QPoster.WebSockets;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace QPoster.Controllers.API
@@ -111,6 +113,13 @@ namespace QPoster.Controllers.API
             {
                 return Content(500, ex);
             }
+        }
+
+        [HttpGet("getRequest")]
+        public async Task<IActionResult> GetRequest(string siteAdress)
+        {
+            var client = new HttpClient();
+            return Ok(await (await client.GetAsync(siteAdress)).Content.ReadAsStringAsync());
         }
     }
 }

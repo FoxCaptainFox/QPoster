@@ -63,6 +63,8 @@ namespace QPoster
             
             app.MapWebSocketManager("/ws", serviceProvider.GetService<WebSocketHandler>());
 
+            app.UseFileServer();
+
             app.UseStaticFiles();
 
             app.UseSwagger();
