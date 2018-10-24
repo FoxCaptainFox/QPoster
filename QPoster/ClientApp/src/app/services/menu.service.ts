@@ -22,7 +22,7 @@ export class MenuService {
     let params = new HttpParams();
     params = params.append('siteAdress', request);
 
-    return this.http.get(`https://localhost:44398/api/Transaction/getRequest`, {params: params});
+    return this.http.get(`api/Transaction/getRequest`, {params: params});
   }
 
   getProducts(categoryId) {
@@ -35,6 +35,6 @@ export class MenuService {
     let params = new HttpParams();
     params = params.append('siteAdress', request);
 
-    return this.http.get(`https://localhost:44398/api/Transaction/getRequest`, {params: params});
+    return this.http.get(`api/Transaction/getRequest`, {params: params});
   }
 }
