@@ -1,40 +1,36 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class MenuService {
+export class AboutService {
 
   constructor(
     private http: HttpClient,
-    private cookie: CookieService
+    private cookie: CookieService,
   ) { }
 
-  getCategories() {
-
+  getCompanyName() {
     const companyName: string = this.cookie.get('account');
     const token: string = this.cookie.get('token');
-
-    const request = `https://${companyName}.joinposter.com/api/menu.getCategories?token=${token}`;
+    const request = `https://${companyName}.joinposter.com/api/settings.getCompanyName?token=${token}`;
 
     let params = new HttpParams();
     params = params.append('siteAdress', request);
 
-    return this.http.get(`api/Transaction/getRequest`, {params: params});
+    return this.http.get(`api/Transaction/GetRequest`, { params: params });
   }
 
-  getProducts(categoryId) {
-
+  getCompanyLogo() {
     const companyName: string = this.cookie.get('account');
     const token: string = this.cookie.get('token');
-
-    const request = `https://${companyName}.joinposter.com/api/menu.getProducts?token=${token}&category_id=${categoryId}`;
+    const request = `https://${companyName}.joinposter.com/api/settings.getAllSettings?token=${token}`;
 
     let params = new HttpParams();
     params = params.append('siteAdress', request);
 
-    return this.http.get(`api/Transaction/getRequest`, {params: params});
+    return this.http.get(`api/Transaction/GetRequest`, { params: params });
   }
 }

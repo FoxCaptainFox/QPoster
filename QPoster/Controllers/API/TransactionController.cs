@@ -17,14 +17,18 @@ namespace QPoster.Controllers.API
     [Route("api/[controller]")]
     public class TransactionController : _BaseApiController
     {
-        private IRepository<Transaction> _transactionsRepository;
-        private IRepository<TransactionProducts> _transactionProductsRepository;
-        private ITransactionService _transactionService;
-        private WebSocketHandler _webSocketHandler;
-        private ConnectionManager _connectionManager;
+        private readonly IRepository<Transaction> _transactionsRepository;
+        private readonly IRepository<TransactionProducts> _transactionProductsRepository;
+        private readonly ITransactionService _transactionService;
+        private readonly WebSocketHandler _webSocketHandler;
+        private readonly ConnectionManager _connectionManager;
 
-        public TransactionController(IRepository<Transaction> transactionsRepository, IRepository<TransactionProducts> transactionProductsRepository,
-            ITransactionService transactionService, WebSocketHandler webSocketHandler, ConnectionManager connectionManager)
+        public TransactionController(
+            IRepository<Transaction> transactionsRepository,
+            IRepository<TransactionProducts> transactionProductsRepository,
+            ITransactionService transactionService,
+            WebSocketHandler webSocketHandler,
+            ConnectionManager connectionManager)
         {
             _transactionsRepository = transactionsRepository;
             _transactionProductsRepository = transactionProductsRepository;
@@ -34,16 +38,17 @@ namespace QPoster.Controllers.API
         }
 
 		[HttpPost("AddTransaction")]
-		public async Task<IActionResult> AddTransaction([FromBody] AddTransactionRequestModel model)
+		public IActionResult AddTransaction([FromBody] AddTransactionRequestModel model)
 		{
-			try
+            if (!ModelState.IsValid)
+            {
+                throw new Exception("Invalid model");
+            }
+
+            try
 			{
-				if (!ModelState.IsValid)
-					throw new Exception("Invalid model");
-
-				var posterResponse = await _transactionService.AddTransaction(model);
-
-                return Content(200, posterResponse);
+				var posterResponse = _transactionService.AddTransaction(model);
+                return Ok(posterResponse);
             }
             catch (Exception ex)
             {
@@ -52,16 +57,17 @@ namespace QPoster.Controllers.API
         }
 
 		[HttpPost("AddProducts")]
-		public async Task<IActionResult> AddProducts([FromBody] List<AddProductsRequestModel> products)
+		public IActionResult AddProducts([FromBody] AddProductsRequestModel[] products)
 		{
-			try
+            if (!ModelState.IsValid)
+            {
+                throw new Exception("Invalid model");
+            }
+
+            try
 			{
-				if (!ModelState.IsValid)
-					throw new Exception("Invalid model");
-
-				await _transactionService.AddProductsAsync(products);
-
-				return Content(200, null);
+				_transactionService.AddProductsAsync(products);
+				return Ok();
 			}
 			catch (Exception ex)
 			{
@@ -70,11 +76,11 @@ namespace QPoster.Controllers.API
 		}
 
 		[HttpGet("GetProducts/{transactionId}")]
-		public async Task<IActionResult> GetProducts(int transactionId)
+		public IActionResult GetProducts(int transactionId)
 		{
 			try
 			{
-				var result = await _transactionService.GetProducts(transactionId);
+				var result = _transactionService.GetProducts(transactionId);
 				return Ok(result);
 			}
 			catch (Exception ex)
@@ -84,42 +90,69 @@ namespace QPoster.Controllers.API
 		}
 
 		[HttpGet("CallWaiter")]
-        public async Task<IActionResult> CallWaiter(int transactionId)
+        public IActionResult CallWaiter(int transactionId)
         {
-            try
-            {
-                var transaction = _transactionsRepository.First(i => i.TransactionId == transactionId);
+            //try
+            //{
+            //    var transaction = _transactionsRepository.First(i => i.TransactionId == transactionId);
 
-                var terminalId = transaction.SpotTabletId;
+            //    var terminalId = transaction.SpotTabletId;
 
-                var tableId = transaction.TableId;
+            //    var tableId = transaction.TableId;
 
-                var accountName = transaction.AccountName;
+            //    var accountName = transaction.AccountName;
 
-                var socketKey = _connectionManager.Connections.Keys.Where(i => i.TerminalId == terminalId).FirstOrDefault();
-                var socket = _connectionManager.Connections[socketKey];
+            //    var socketKey = _connectionManager.Connections.Keys.Where(i => i.TerminalId == terminalId).FirstOrDefault();
+            //    var socket = _connectionManager.Connections[socketKey];
 
-                var notificationMessage = new { tableId };
-                var json = JsonConvert.SerializeObject(notificationMessage);
+            //    var notificationMessage = new { tableId };
+            //    var json = JsonConvert.SerializeObject(notificationMessage);
 
-                if (socket != null)
-                    await _webSocketHandler.SendMessageAsync(json, socket, terminalId, accountName);
-                else
-                    throw new Exception();
+            //    if (socket != null)
+            //        await _webSocketHandler.SendMessageAsync(json, socket, terminalId, accountName);
+            //    else
+            //        throw new Exception();
 
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                return Content(500, ex);
-            }
+            //    return Ok();
+            //}
+            //catch (Exception ex)
+            //{
+            //    return Content(500, ex);
+            //}
+
+            return Ok();
         }
 
-        [HttpGet("getRequest")]
+        [HttpGet("GetRequest")]
         public async Task<IActionResult> GetRequest(string siteAdress)
         {
-            var client = new HttpClient();
-            return Ok(await (await client.GetAsync(siteAdress)).Content.ReadAsStringAsync());
+            //var client = new HttpClient();
+            //return Ok(await (await client.GetAsync(siteAdress)).Content.ReadAsStringAsync());
+
+            var uri = new Uri(siteAdress);
+
+            switch(uri.Segments.Last())
+            {
+                case "menu.getCategories":
+                    return Ok(new { response = new object[] {
+                        new { Category_id = 0, Category_name = "Hot drinks", Category_photo = "" },
+                        new { Category_id = 1, Category_name = "Cold drinks", Category_photo = "" },
+                    }});
+                case "menu.getProducts":
+                    return Ok(new { response = new object[] {
+                        new { Product_id = 0, Product_name = "Pasta", Photo = "", Price = 50, Product_production_description = "Pasta with pieces of meat", count = 0 },
+                    }});
+                case "settings.getCompanyName":
+                    return Ok(new { response = new {
+                        value = "Poesh vkusno",
+                    }});
+                case "settings.getAllSettings":
+                    return Ok(new { response = new {
+                        logo = "",
+                    }});
+                default:
+                    return BadRequest();
+            }
         }
     }
 }

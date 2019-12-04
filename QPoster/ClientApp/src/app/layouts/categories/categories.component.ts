@@ -3,7 +3,7 @@ import { ICategory } from '../../models/ICategory';
 import { IProductDataModel } from '../../models/IProductDataModel';
 import { IProduct } from '../../models/IProduct';
 import { Observable } from 'rxjs';
-import { MenuService } from '../../services/menu.service';
+import { MenuService } from '../../services/http/menu.service';
 import { map } from 'rxjs/operators';
 import { CategoriesService } from 'src/app/services/local/categories.service';
 import { TransactionService } from '../../services/http/transaction.service';
@@ -28,34 +28,33 @@ export class CategoriesComponent implements OnInit {
   constructor(private menuService: MenuService,
     private categoriesService: CategoriesService,
     private transactionService: TransactionService,
-    private cookie: CookieService) { }
+    private cookie: CookieService) {
+
+    this.getDefaultMenu();
+  }
 
   ngOnInit() {
-    this.getDefaultMenu();
-
     this.categoriesService.clickEvent.subscribe(() => {
       this.categoriesService.setButtonVisibility(false);
       this.getDefaultMenu();
     });
 
     this.categoriesService.confirmMenuEvent.subscribe(() => {
-      if(this.productsToBuy.length == 0){
-        return;
-      }
-      else{
-        let productsToServer: IProductDataModel[] = [];
+      if (this.productsToBuy.length > 0) {
+        const productsToServer: IProductDataModel[] = [];
         this.productsToBuy.forEach(product => {
           productsToServer.push({
-            name : product.product_name,
-            transactionId : +JSON.parse(this.cookie.get('transaction')).transaction_id,
-            productId : +product.product_id as number,
-            price : +product.price[1] as number,
-            count : +product.count
-          })
+            name: product.product_name,
+            transactionId: JSON.parse(this.cookie.get('transaction')).transaction_id,
+            productId: parseInt(product.product_id, 10),
+            price: product.price,
+            count: product.count,
+          });
         });
         this.transactionService.addTransaction(productsToServer).subscribe();
+
+        this.productsToBuy = [];
       }
-      this.productsToBuy = [];
     });
   }
 
@@ -104,14 +103,12 @@ export class CategoriesComponent implements OnInit {
   addToCheck(product: IProduct) {
     if (product.count === 1) {
       this.productsToBuy.push(product);
-      console.log(this.productsToBuy);
     }
   }
 
   deleteFromCheck(product: IProduct) {
     if (product.count === 0) {
       this.productsToBuy = this.productsToBuy.filter(x => x.product_name !== product.product_name);
-      console.log(this.productsToBuy);
     }
   }
 }

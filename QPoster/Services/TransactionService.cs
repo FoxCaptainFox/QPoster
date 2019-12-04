@@ -26,37 +26,35 @@ namespace QPoster.Services
 			_transactionProductsRepository = transactionProductsRepository;
 		}
 
-		public async Task AddProductsAsync(List<AddProductsRequestModel> products)
+		public void AddProductsAsync(IEnumerable<AddProductsRequestModel> products)
 		{
-
-			var client = new HttpClient();
-			
-			var transaction = _transactionRepository.Find(t => t.TransactionId == products.First().transactionId).First();
-
-			var url = "https://" + transaction.AccountName + ".joinposter.com/api/transactions.addTransactionProduct?token=" + transaction.Token;
+			var client = new HttpClient();	
+			var transaction = _transactionRepository.Find(t => t.TransactionId == products.First().TransactionId).First();
+			//var url = "https://" + transaction.AccountName + ".joinposter.com/api/transactions.addTransactionProduct?token=" + transaction.Token;
 			
 			foreach (var product in products)
 			{
-				TransactionProducts transactionProducts = new TransactionProducts()
+				var transactionProducts = new TransactionProducts()
 				{
-					Count = product.count,
-					Price = product.price,
-					ProductId = product.productId,
-					TransactionId = product.transactionId,
-					Name = product.name
+					Count = product.Count,
+					Price = product.Price,
+					ProductId = product.ProductId,
+					TransactionId = product.TransactionId,
+					Name = product.Name,
 				};
-				PosterAddTransactionProductReqestModel posterModel = new PosterAddTransactionProductReqestModel()
-				{
-					product_id = product.productId,
-					transaction_id = product.transactionId,
-					spot_id = transaction.SpotId,
-					spot_tablet_id = transaction.SpotTabletId
-				};
-				for (int i = 0; i < product.count; i++)
-				{
-					var content = JsonConvert.SerializeObject(posterModel);
-					var abc = await client.PostAsync(url, new StringContent(content, Encoding.UTF8, "application/json"));
-				}
+				//var posterModel = new PosterAddTransactionProductReqestModel()
+				//{
+				//	product_id = product.productId,
+				//	transaction_id = product.transactionId,
+				//	spot_id = transaction.SpotId,
+				//	spot_tablet_id = transaction.SpotTabletId
+				//};
+
+				//for (int i = 0; i < product.count; i++)
+				//{
+				//	var content = JsonConvert.SerializeObject(posterModel);
+				//	var abc = await client.PostAsync(url, new StringContent(content, Encoding.UTF8, "application/json"));
+				//}
 
 				var cba = _transactionProductsRepository.Find(x => x.ProductId == transactionProducts.ProductId && x.TransactionId == transactionProducts.TransactionId);
 				if (cba.Count() == 0)
@@ -70,41 +68,38 @@ namespace QPoster.Services
 					ab.Count += transactionProducts.Count;
 					_transactionProductsRepository.Update(ab);
 				}
-				
-			}			
+			}
+
 			_transactionRepository.SaveChanges();
-			
+
 			return;
 		}
 
-		public async Task<string> AddTransaction(AddTransactionRequestModel model)
+		public string AddTransaction(AddTransactionRequestModel model)
         {
             var client = new HttpClient();
-
-            var url = "https://" + model.accountname + ".joinposter.com/api/transactions.createTransaction?token=" + model.token;
-
-            var content = JsonConvert.SerializeObject(model);
-
-            var response = await (await client.PostAsync(url, new StringContent(content, Encoding.UTF8, "application/json"))).Content.ReadAsStringAsync();
+            //var url = "https://" + model.accountname + ".joinposter.com/api/transactions.createTransaction?token=" + model.token;
+            //var content = JsonConvert.SerializeObject(model);
+            //var response = await (await client.PostAsync(url, new StringContent(content, Encoding.UTF8, "application/json"))).Content.ReadAsStringAsync();
 
             var transaction = new Transaction
             {
-                TransactionId = JsonConvert.DeserializeObject<FirstlyCreateTransactionResponseModel>(response).response.transaction_id,
+                TransactionId = 1950, // JsonConvert.DeserializeObject<FirstlyCreateTransactionResponseModel>(response).response.transaction_id,
                 AccountName = model.accountname,
                 SpotId = model.spot_id,
                 SpotTabletId = model.spot_tablet_id,
                 Token = model.token,
                 TransactionStatus = TransactionStatus.Open,
-				TableId = model.table_id
+				TableId = model.table_id,
             };
 
             _transactionRepository.Insert(transaction);
             _transactionRepository.SaveChanges();
-            
-            return response;
+
+            return "{ \"response\": { \"transaction_id\": 1950, \"transaction_tablet_id\": 1508850241000 } }";
         }
 
-		public async Task<List<TransactionProducts>> GetProducts(int transactionId)
+		public List<TransactionProducts> GetProducts(int transactionId)
 		{
 			var result = _transactionProductsRepository.Find(x => x.TransactionId == transactionId).ToList();
 			return result;

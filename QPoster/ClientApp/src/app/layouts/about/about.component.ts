@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { AboutService } from '../../services/about-service.service';
+import { AboutService } from '../../services/http/about-service.service';
 import { ICompanyNameOrLogo } from '../../models/ICompanyNameOrLogo'
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -21,13 +21,12 @@ export class AboutComponent implements OnInit {
 
   ngOnInit() {
     this.aboutService.getCompanyLogo()
-    .subscribe( (x:any) => {
-      if(x.response.logo == ''){
-        this.hasLogo = false
+    .subscribe( (x: any) => {
+      if (!x.response.logo) {
+        this.hasLogo = false;
       }
-      this.companyLogo.value = x.response.logo
-      this.companyLogo.value = "https://posterhack.joinposter.com" + this.companyLogo.value
-      console.log(this.companyLogo.value)
-    })
+      this.companyLogo.value = x.response.logo;
+      this.companyLogo.value = 'https://posterhack.joinposter.com' + this.companyLogo.value;
+    });
   }
 }

@@ -7,8 +7,8 @@ namespace QPoster.Services.Interfaces
 {
     public interface ITransactionService
     {
-        Task<string> AddTransaction(AddTransactionRequestModel model);
-		Task AddProductsAsync(List<AddProductsRequestModel> products);
-		Task<List<TransactionProducts>> GetProducts(int transactionId);
+        string AddTransaction(AddTransactionRequestModel model);
+		void AddProductsAsync(IEnumerable<AddProductsRequestModel> products);
+		List<TransactionProducts> GetProducts(int transactionId);
 	}
 }

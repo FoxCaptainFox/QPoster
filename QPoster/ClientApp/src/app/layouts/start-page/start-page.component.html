@@ -1,5 +1,5 @@
 <div class="start-page-wrapper">
-  <ng-template *ngIf="!isWrongUrl; else wrongUrlTemplate">
+  <ng-template *ngIf="isUrlCorrect; else wrongUrlTemplate">
     <div class="start-page">
       <ng-template *ngIf="isLoad">
         <div class="load-page"></div>

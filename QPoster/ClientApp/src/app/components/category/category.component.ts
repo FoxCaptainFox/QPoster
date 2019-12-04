@@ -16,7 +16,7 @@ export class CategoryComponent implements OnInit {
   }
 
   transformImage(image: string) {
-    if (image == null) {
+    if (!image) {
       return 'assets/images/default_product.png';
     }
     return `https://posterhack.joinposter.com${image}`;

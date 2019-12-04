@@ -9,18 +9,18 @@ namespace QPoster.Models.RequestModels
 	public class AddProductsRequestModel
 	{
 		[Required]
-		public string name { get; set; }
+		public string Name { get; set; }
 
 		[Required]
-		public int transactionId { get; set; }
+		public int TransactionId { get; set; }
 
 		[Required]
-		public int productId { get; set; }
+		public int ProductId { get; set; }
 
 		[Required]
-		public int count { get; set; }
+		public int Count { get; set; }
 
 		[Required]
-		public int price { get; set; }
+		public int Price { get; set; }
 	}
 }

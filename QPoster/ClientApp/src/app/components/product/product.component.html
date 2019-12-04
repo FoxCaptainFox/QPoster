@@ -3,8 +3,8 @@
     <img class="image" [src]="transformImage(product.photo)" />
   </div>
   <div class="product-items">
-    <div class="product-name">{{product.product_name}}</div>
-    <div class="product-name">Price: {{product.price[1]/100}} грн</div>
+    <div class="product-name">{{ product.product_name }}</div>
+    <div class="product-name">Price: {{ product.price }} ₴</div>
   </div>
   <div class="product-count">
     <button mat-icon-button (click)="increaseDecreaseCount(true)">

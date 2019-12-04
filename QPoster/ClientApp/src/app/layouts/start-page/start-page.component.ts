@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { GuestCountDialogComponent } from 'src/app/components/guest-count-dialog/guest-count-dialog.component';
 import { IGetTansactionModel } from 'src/app/models/getTransactionModel';
 import { CookieService } from 'ngx-cookie-service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-start-page',
@@ -13,7 +14,7 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class StartPageComponent implements AfterViewInit {
 
-  isWrongUrl = false;
+  isUrlCorrect = false;
   isLoading = false;
   routeData: IGetTansactionModel;
 
@@ -21,7 +22,7 @@ export class StartPageComponent implements AfterViewInit {
     private router: Router,
     private transactionService: TransactionService,
     public dialog: MatDialog,
-    private cookie: CookieService ) {
+    private cookie: CookieService) {
   }
 
   ngAfterViewInit() {
@@ -36,19 +37,17 @@ export class StartPageComponent implements AfterViewInit {
       const user_id = params['user_id'];
 
       setTimeout(() => {
-        if (!accountname || !token || !spot_id || !spot_tablet_id || !table_id || !user_id) {
-          this.isWrongUrl = true;
-        } else {
+        if (environment.noUrlCheck || accountname && token && spot_id && spot_tablet_id && table_id && user_id) {
           this.routeData = {
-            accountname: accountname,
-            token: token,
-            spot_id: spot_id,
-            spot_tablet_id: spot_tablet_id,
-            table_id: table_id,
-            user_id: user_id,
-            guests_count: 0
+            accountname: accountname || 'default_account',
+            token: token || 'default_token',
+            spot_id: spot_id || '0',
+            spot_tablet_id: spot_tablet_id || '0',
+            table_id: table_id || '0',
+            user_id: user_id || '0',
+            guests_count: 0,
           };
-          this.isWrongUrl = false;
+          this.isUrlCorrect = true;
           this.openDialog();
         }
       });

@@ -1,16 +1,18 @@
 .app-main {
     width: 100%;
     height: 100%;
-    display: flex;
-    flex-direction: column;
     background-color: rgba(240,240,240,1);
 }
 
 .mat-tab-group {
-    flex: 1;
+    height: 100%;
+    padding-top: 50px;
+    box-sizing: border-box;
 }
 
-.mat-tab-body-wrapper, .content{
+.mat-tab-body-wrapper {
+    display: flex;
+    flex-direction: column;
     flex: 1;
 }
 
@@ -27,24 +29,28 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-shrink: 0;
     background: #673ab7;
     color: white;
     box-shadow: 0px 2px 5px #686868;
     z-index: 10;
-    position: sticky;
+    position: fixed;
     top:0;
 }
 
-.header .back-button, .header .confirm-button {
+.header .back-button,
+.header .back-button:active,
+.header .confirm-button,
+.header .confirm-button:active {
     color: white;
     position: absolute;
-    left: 10px;
-    top: 10px;
+    left: 5px;
+    top: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     z-index: 20;
     margin: 0;
     flex-shrink: 0;
@@ -52,21 +58,40 @@
     border: none;
     border-radius: 50%;
     padding: 0;
+    cursor: pointer;
+    box-shadow: unset;
 }
 
-.app-main .header .confirm-button {
+.app-main .header .confirm-button,
+.app-main .header .confirm-button:active {
     right: 10px;
     left: unset;
-    /* top: 10px; */
 }
 
-.header h3{
+.app-main .header .back-button .mat-button-wrapper,
+.app-main .header .confirm-button .mat-button-wrapper {
+    padding: 0;
+}
+
+.header h3 {
     margin: 0 auto;
 }
 
 .notification {
-    position: absolute;
+    position: fixed;
     right: 10px;
-    bottom: 58px;
+    bottom: 55px;
     z-index: 30;
+    cursor: pointer;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.content.categories {
+    height: auto;
+    padding: 10px 0 70px 0;
 }

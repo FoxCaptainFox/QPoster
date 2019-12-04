@@ -15,3 +15,11 @@
   color: white;
   border-radius: 5px;
 }
+
+.wrong-url .head {
+  font-size: 20px;
+}
+
+.wrong-url .text {
+  margin-top: 10px;
+}

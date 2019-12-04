@@ -1,8 +1,7 @@
 <div class="info">
-    <img [src]="companyLogo.value" class="image" *ngIf="hasLogo">
-    <img src="assets/images/default.png" class="image" *ngIf="!hasLogo">
-
-    <p class="descr">
-        Здесь могла бы быть инфа о вашем заведении :)))
-    </p>
+    <div class="image-wrapper">
+        <img [src]="companyLogo.value" class="image" *ngIf="hasLogo">
+        <img src="assets/images/default.png" class="image" *ngIf="!hasLogo">
+    </div>
+    <p class="descr">Information about a cafe, restaurant or any other catering</p>
 </div>

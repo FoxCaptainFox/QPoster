@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { AboutService } from '../../services/about-service.service';
+import { AboutService } from '../../services/http/about-service.service';
 import { ICompanyNameOrLogo } from '../../models/ICompanyNameOrLogo';
 import { IProductDataModel } from '../../models/IProductDataModel';
 import { Observable } from 'rxjs';
