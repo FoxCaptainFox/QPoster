@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { TransactionService } from 'src/app/services/http/transaction.service';
 import { WrongUrlComponent } from './wrong-url.component';
 
 @NgModule({
@@ -13,9 +12,6 @@ import { WrongUrlComponent } from './wrong-url.component';
   ],
   exports: [
     WrongUrlComponent,
-  ],
-  providers: [
-    TransactionService
   ]
 })
 export class WrongUrlModel { }

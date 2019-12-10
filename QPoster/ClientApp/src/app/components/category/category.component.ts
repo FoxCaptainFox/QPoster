@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ICategory } from '../../models/ICategory';
 
 @Component({
@@ -6,14 +6,9 @@ import { ICategory } from '../../models/ICategory';
   templateUrl: './category.component.html',
   styleUrls: ['./category.component.css']
 })
-export class CategoryComponent implements OnInit {
+export class CategoryComponent {
 
   @Input() category: ICategory;
-
-  constructor() { }
-
-  ngOnInit() {
-  }
 
   transformImage(image: string) {
     if (!image) {

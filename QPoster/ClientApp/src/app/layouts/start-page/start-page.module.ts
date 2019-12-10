@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { StartPageComponent } from './start-page.component';
-import { TransactionService } from 'src/app/services/http/transaction.service';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -26,9 +25,6 @@ import { FormsModule } from '@angular/forms';
   ],
   exports: [
     StartPageComponent,
-  ],
-  providers: [
-    TransactionService
   ],
   entryComponents: [
     GuestCountDialogComponent

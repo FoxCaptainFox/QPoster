@@ -5,11 +5,4 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './end-dialog.component.html',
   styleUrls: ['./end-dialog.component.css']
 })
-export class EndDialogComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
-}
+export class EndDialogComponent {}

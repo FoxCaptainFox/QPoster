@@ -17,13 +17,9 @@ import { CookieService } from 'ngx-cookie-service';
   encapsulation: ViewEncapsulation.None,
 })
 export class CategoriesComponent implements OnInit {
-  @Input() companyName: string;
-
   categories: Observable<ICategory[]>;
   products: Observable<IProduct[]>;
   productsToBuy: IProduct[] = [];
-  parentCategory = null;
-  category_id;
 
   constructor(private menuService: MenuService,
     private categoriesService: CategoriesService,

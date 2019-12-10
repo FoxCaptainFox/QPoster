@@ -1,6 +1,6 @@
-import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
+import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { IProductDataModel } from '../../models/IProductDataModel';
-import { MatDialogRef, MatDialog } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { EndDialogComponent } from '../../components/end-dialog/end-dialog.component';
 import { CookieService } from 'ngx-cookie-service';
 
@@ -10,20 +10,17 @@ import { CookieService } from 'ngx-cookie-service';
   styleUrls: ['./check.component.css'],
   encapsulation: ViewEncapsulation.None,
 })
-export class CheckComponent implements OnInit {
+export class CheckComponent {
 
   count = 1;
 
-  @Input() checkProducts: IProductDataModel
+  @Input() checkProducts: IProductDataModel;
 
   constructor(public dialog: MatDialog, private cookieService: CookieService) { }
 
-  ngOnInit() {
-  }
-
   openDialog() {
     const dialogRef = this.dialog.open(EndDialogComponent);
-    
+
     dialogRef.afterClosed().subscribe(result => {
       this.cookieService.deleteAll();
       window.location.reload();

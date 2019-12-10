@@ -1,9 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { AboutService } from '../../services/http/about-service.service';
-import { ICompanyNameOrLogo } from '../../models/ICompanyNameOrLogo';
 import { IProductDataModel } from '../../models/IProductDataModel';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { CategoriesService } from 'src/app/services/local/categories.service';
 import { TransactionService } from '../../services/http/transaction.service';
 import { NotificationService } from 'src/app/services/http/notificationService';
@@ -15,8 +12,7 @@ import { NotificationService } from 'src/app/services/http/notificationService';
   encapsulation: ViewEncapsulation.None
 })
 export class MainComponent implements OnInit {
-  companyName: Observable<ICompanyNameOrLogo>;
-
+  companyName: string;
   selectedTab = 1;
   isButtonVisible = false;
   isButtonConfirmVisible = true;
@@ -28,9 +24,9 @@ export class MainComponent implements OnInit {
     private notificationService: NotificationService) { }
 
   ngOnInit() {
-    this.companyName = this.aboutService.getCompanyName().pipe(
-      map((x: any) => x.response as ICompanyNameOrLogo)
-    );
+    this.aboutService.getCompanyName().subscribe((x: any) => {
+      this.companyName = x.response.value;
+    });
 
     this.categotiesService.buttonIsVisible.subscribe(visibility => {
       this.isButtonVisible = visibility;

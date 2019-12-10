@@ -1,7 +1,7 @@
 <div class="app-main">
   <div class="header">
     <button mat-fab *ngIf="isButtonVisible" class="back-button mat-elevation-z" (click)="backClick()"><i class="fa fa-arrow-left"></i></button>
-    <h3>{{(companyName | async)?.value}}</h3>
+    <h3>{{ companyName }}</h3>
     <button mat-fab *ngIf="isButtonConfirmVisible" class="confirm-button mat-elevation-z" (click)="confirmClick()"><i class="fas fa-check"></i></button>
   </div>
   <div class="notification" (click)="notify()">
@@ -12,10 +12,10 @@
       <app-check class="content check" [checkProducts]="checkProducts"></app-check>
     </mat-tab>
     <mat-tab label="Menu">
-      <app-categories class="content categories" [companyName]="companyName"></app-categories>
+      <app-categories class="content categories"></app-categories>
     </mat-tab>
     <mat-tab label="About">
-      <app-about class="content about" [companyName]="companyName"></app-about>
+      <app-about class="content about"></app-about>
     </mat-tab>
   </mat-tab-group>
 </div>
